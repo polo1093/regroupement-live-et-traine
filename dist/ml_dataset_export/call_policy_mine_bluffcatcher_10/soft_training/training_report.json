@@ -1,0 +1,66 @@
+{
+  "status": "ok",
+  "schema": "solver_policy_soft_training_v1",
+  "input_csv": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_10\\model_input_soft_policy_accepted.csv",
+  "output_dir": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_10\\soft_training",
+  "generated_at": "2026-06-10T11:35:14.583376+00:00",
+  "rows": 10,
+  "split_distribution": {
+    "test": 1,
+    "train": 7,
+    "validation": 2
+  },
+  "street_distribution": {
+    "RIVER": 10
+  },
+  "label_distribution": {
+    "NO_INVEST": 10
+  },
+  "target_means": {
+    "target_freq_no_invest": 0.783542,
+    "target_freq_call": 0.216136,
+    "target_freq_raise": 0.000322
+  },
+  "stage_reports": {
+    "river": {
+      "status": "ok",
+      "stage": "river",
+      "selected_model": "random_forest_regressor",
+      "rows": 10,
+      "rows_train": 7,
+      "rows_validation": 2,
+      "rows_test": 1,
+      "feature_names": [
+        "features.hero_position",
+        "features.pot_bb",
+        "features.to_call_bb",
+        "features.effective_stack_bb",
+        "features.can_check",
+        "features.can_call",
+        "features.can_raise",
+        "features.players_active",
+        "features.equity_win",
+        "features.call_max_bb",
+        "features.call_margin_bb",
+        "features.bet_size_bb"
+      ],
+      "target_means": {
+        "target_freq_no_invest": 0.783542,
+        "target_freq_call": 0.216136,
+        "target_freq_raise": 0.000322
+      },
+      "mae": 0.0,
+      "rmse": 0.0,
+      "per_target_mae": {
+        "target_freq_no_invest": 0.0,
+        "target_freq_call": 0.0,
+        "target_freq_raise": 0.0
+      },
+      "prediction_target_means": {
+        "target_freq_no_invest": 0.783542,
+        "target_freq_call": 0.216136,
+        "target_freq_raise": 0.000322
+      }
+    }
+  }
+}

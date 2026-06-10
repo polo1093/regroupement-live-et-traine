@@ -1,0 +1,109 @@
+# Solver Policy Slim Training
+
+Status: `ok`
+
+## Dataset
+
+```json
+{
+  "rows": 100,
+  "split_distribution": {
+    "test": 15,
+    "train": 70,
+    "validation": 15
+  },
+  "street_distribution": {
+    "RIVER": 100
+  },
+  "label_distribution": {
+    "NO_INVEST": 54,
+    "RAISE": 46
+  }
+}
+```
+
+## Stages
+
+### river
+
+```json
+{
+  "status": "ok",
+  "stage": "river",
+  "selected_model": "extra_trees",
+  "rows": 100,
+  "rows_train": 70,
+  "rows_validation": 15,
+  "rows_test": 15,
+  "feature_names": [
+    "features.hero_position",
+    "features.pot_bb",
+    "features.to_call_bb",
+    "features.effective_stack_bb",
+    "features.can_check",
+    "features.can_call",
+    "features.can_raise",
+    "features.players_active",
+    "features.equity_win",
+    "features.call_max_bb",
+    "features.call_margin_bb",
+    "features.bet_size_bb"
+  ],
+  "label_distribution": {
+    "NO_INVEST": 54,
+    "RAISE": 46
+  },
+  "accuracy": 0.666667,
+  "macro_f1": 0.444444,
+  "classification_report": {
+    "NO_INVEST": {
+      "precision": 0.7142857142857143,
+      "recall": 0.625,
+      "f1-score": 0.6666666666666666,
+      "support": 8.0
+    },
+    "CALL": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "RAISE": {
+      "precision": 0.625,
+      "recall": 0.7142857142857143,
+      "f1-score": 0.6666666666666666,
+      "support": 7.0
+    },
+    "accuracy": 0.6666666666666666,
+    "macro avg": {
+      "precision": 0.44642857142857145,
+      "recall": 0.44642857142857145,
+      "f1-score": 0.4444444444444444,
+      "support": 15.0
+    },
+    "weighted avg": {
+      "precision": 0.6726190476190477,
+      "recall": 0.6666666666666666,
+      "f1-score": 0.6666666666666666,
+      "support": 15.0
+    }
+  },
+  "confusion_matrix": {
+    "NO_INVEST": {
+      "NO_INVEST": 5,
+      "CALL": 0,
+      "RAISE": 3
+    },
+    "CALL": {
+      "NO_INVEST": 0,
+      "CALL": 0,
+      "RAISE": 0
+    },
+    "RAISE": {
+      "NO_INVEST": 2,
+      "CALL": 0,
+      "RAISE": 5
+    }
+  }
+}
+```

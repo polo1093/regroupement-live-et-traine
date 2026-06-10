@@ -1,0 +1,128 @@
+{
+  "status": "ok",
+  "output_dir": "..\\..\\dist\\ml_dataset_export\\solver_policy_real_smoke_20",
+  "jobs": {
+    "status": "ok",
+    "output": "..\\..\\dist\\ml_dataset_export\\solver_policy_real_smoke_20\\solver_jobs.jsonl",
+    "jobs_written": 20,
+    "job_family": "hero_oriented",
+    "profile_counts": {
+      "hero_oop_check_or_bet": 8,
+      "hero_ip_facing_bet": 7,
+      "hero_oop_facing_bet": 5
+    },
+    "street": "RIVER",
+    "iterations": 5,
+    "timeout_s": 5.0,
+    "backend": "python"
+  },
+  "results": {
+    "status": "ok",
+    "input_path": "..\\..\\dist\\ml_dataset_export\\solver_policy_real_smoke_20\\solver_jobs.jsonl",
+    "output_path": "..\\..\\dist\\ml_dataset_export\\solver_policy_real_smoke_20\\solver_results.jsonl",
+    "total_read": 20,
+    "jobs_valid": 20,
+    "jobs_invalid": 0,
+    "jobs_solved": 20,
+    "solver_failed": 0,
+    "dry_run": false
+  },
+  "policy": {
+    "output": "..\\..\\dist\\ml_dataset_export\\solver_policy_real_smoke_20\\solver_policy_dataset.jsonl",
+    "written": 20,
+    "skipped": [],
+    "validation": {
+      "ok": true,
+      "lines_checked": 20,
+      "errors": []
+    }
+  },
+  "qa": {
+    "ok": true,
+    "errors": [],
+    "report": {
+      "input": "..\\..\\dist\\ml_dataset_export\\solver_policy_real_smoke_20\\solver_policy_dataset.jsonl",
+      "rows": 20,
+      "accepted": 20,
+      "rejected": 0,
+      "acceptance_rate": 1.0,
+      "label_counts": {
+        "NO_INVEST": 11,
+        "RAISE": 9
+      },
+      "street_counts": {
+        "RIVER": 20
+      },
+      "reject_reasons": {},
+      "mean_dominant_frequency": 0.8370448143,
+      "iterations": {
+        "count": 20,
+        "min": 5,
+        "max": 5,
+        "mean": 5.0
+      },
+      "root_exploitability_pct": {
+        "count": 20,
+        "min": 1.3308050264,
+        "max": 3.3313379055,
+        "mean": 2.1134068808
+      },
+      "thresholds": {
+        "min_iterations": 5,
+        "max_exploitability": 5.0,
+        "min_dominant_frequency": 0.0,
+        "require_quality": true
+      }
+    }
+  },
+  "features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\solver_policy_real_smoke_20\\model_input_from_solver_policy.csv",
+    "written": 20,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent"
+    ]
+  },
+  "accepted_features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\solver_policy_real_smoke_20\\model_input_from_accepted_policy.csv",
+    "written": 20,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent"
+    ]
+  }
+}

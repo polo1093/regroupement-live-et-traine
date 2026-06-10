@@ -1,0 +1,172 @@
+{
+  "status": "ok",
+  "output_dir": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_10",
+  "target_rows": 10,
+  "kept": 10,
+  "attempts": 16,
+  "acceptance_rate": 0.625,
+  "min_call_frequency": 0.05,
+  "mean_call_frequency_kept": 0.2161362161,
+  "context_counts": {
+    "hero_oop_bluffcatcher": 6,
+    "hero_ip_bluffcatcher": 4
+  },
+  "errors": {
+    "call_frequency_below_threshold": 6
+  },
+  "policy": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_10\\solver_policy_dataset.jsonl",
+    "validation": {
+      "ok": true,
+      "lines_checked": 10,
+      "errors": []
+    }
+  },
+  "qa": {
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "missing_standard_labels:CALL,RAISE"
+    ],
+    "report": {
+      "input": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_10\\solver_policy_dataset.jsonl",
+      "rows": 10,
+      "accepted": 10,
+      "rejected": 0,
+      "acceptance_rate": 1.0,
+      "label_counts": {
+        "NO_INVEST": 10
+      },
+      "street_counts": {
+        "RIVER": 10
+      },
+      "reject_reasons": {},
+      "mean_dominant_frequency": 0.7835417836,
+      "iterations": {
+        "count": 10,
+        "min": 25,
+        "max": 25,
+        "mean": 25.0
+      },
+      "root_exploitability_pct": {
+        "count": 10,
+        "min": 0.0677404743,
+        "max": 0.0677404743,
+        "mean": 0.0677404743
+      },
+      "thresholds": {
+        "min_iterations": 25,
+        "max_exploitability": 0.5,
+        "min_dominant_frequency": 0.0,
+        "require_quality": true,
+        "required_labels": []
+      }
+    }
+  },
+  "features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_10\\model_input_from_solver_policy.csv",
+    "written": 10,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent"
+    ]
+  },
+  "soft_features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_10\\model_input_soft_policy.csv",
+    "written": 10,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent",
+      "target_freq_no_invest",
+      "target_freq_call",
+      "target_freq_raise"
+    ]
+  },
+  "accepted_features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_10\\model_input_from_accepted_policy.csv",
+    "written": 10,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent"
+    ]
+  },
+  "accepted_soft_features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_10\\model_input_soft_policy_accepted.csv",
+    "written": 10,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent",
+      "target_freq_no_invest",
+      "target_freq_call",
+      "target_freq_raise"
+    ]
+  }
+}

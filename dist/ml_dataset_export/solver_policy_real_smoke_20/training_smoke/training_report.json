@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "schema": "solver_policy_slim_training_v1",
+  "input_csv": "..\\..\\dist\\ml_dataset_export\\solver_policy_real_smoke_20\\model_input_from_accepted_policy.csv",
+  "output_dir": "..\\..\\dist\\ml_dataset_export\\solver_policy_real_smoke_20\\training_smoke",
+  "generated_at": "2026-06-10T02:06:28.373274+00:00",
+  "rows": 20,
+  "split_distribution": {
+    "test": 3,
+    "train": 14,
+    "validation": 3
+  },
+  "street_distribution": {
+    "RIVER": 20
+  },
+  "label_distribution": {
+    "NO_INVEST": 11,
+    "RAISE": 9
+  },
+  "stage_reports": {
+    "river": {
+      "status": "ok",
+      "stage": "river",
+      "selected_model": "random_forest",
+      "rows": 20,
+      "rows_train": 14,
+      "rows_validation": 3,
+      "rows_test": 3,
+      "feature_names": [
+        "features.hero_position",
+        "features.pot_bb",
+        "features.to_call_bb",
+        "features.effective_stack_bb",
+        "features.can_check",
+        "features.can_call",
+        "features.can_raise",
+        "features.players_active",
+        "features.equity_win",
+        "features.call_max_bb",
+        "features.call_margin_bb",
+        "features.bet_size_bb"
+      ],
+      "label_distribution": {
+        "NO_INVEST": 11,
+        "RAISE": 9
+      },
+      "accuracy": 0.666667,
+      "macro_f1": 0.444444,
+      "classification_report": {
+        "NO_INVEST": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1-score": 0.6666666666666666,
+          "support": 1.0
+        },
+        "CALL": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "RAISE": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1-score": 0.6666666666666666,
+          "support": 2.0
+        },
+        "accuracy": 0.6666666666666666,
+        "macro avg": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1-score": 0.4444444444444444,
+          "support": 3.0
+        },
+        "weighted avg": {
+          "precision": 0.8333333333333334,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.6666666666666666,
+          "support": 3.0
+        }
+      },
+      "confusion_matrix": {
+        "NO_INVEST": {
+          "NO_INVEST": 1,
+          "CALL": 0,
+          "RAISE": 0
+        },
+        "CALL": {
+          "NO_INVEST": 0,
+          "CALL": 0,
+          "RAISE": 0
+        },
+        "RAISE": {
+          "NO_INVEST": 1,
+          "CALL": 0,
+          "RAISE": 1
+        }
+      }
+    }
+  }
+}

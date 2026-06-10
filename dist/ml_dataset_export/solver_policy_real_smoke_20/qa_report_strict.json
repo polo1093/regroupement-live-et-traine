@@ -1,0 +1,43 @@
+{
+  "ok": false,
+  "errors": [
+    "no_accepted_rows"
+  ],
+  "report": {
+    "input": "../../dist/ml_dataset_export/solver_policy_real_smoke_20/solver_policy_dataset.jsonl",
+    "rows": 20,
+    "accepted": 0,
+    "rejected": 20,
+    "acceptance_rate": 0.0,
+    "label_counts": {
+      "NO_INVEST": 11,
+      "RAISE": 9
+    },
+    "street_counts": {
+      "RIVER": 20
+    },
+    "reject_reasons": {
+      "iterations_too_low": 20,
+      "exploitability_too_high": 20
+    },
+    "mean_dominant_frequency": 0.8370448143,
+    "iterations": {
+      "count": 20,
+      "min": 5,
+      "max": 5,
+      "mean": 5.0
+    },
+    "root_exploitability_pct": {
+      "count": 20,
+      "min": 1.3308050264,
+      "max": 3.3313379055,
+      "mean": 2.1134068808
+    },
+    "thresholds": {
+      "min_iterations": 25,
+      "max_exploitability": 0.5,
+      "min_dominant_frequency": 0.0,
+      "require_quality": true
+    }
+  }
+}

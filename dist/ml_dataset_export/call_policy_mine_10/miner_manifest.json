@@ -1,0 +1,172 @@
+{
+  "status": "partial",
+  "output_dir": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_10",
+  "target_rows": 10,
+  "kept": 4,
+  "attempts": 200,
+  "acceptance_rate": 0.02,
+  "min_call_frequency": 0.05,
+  "mean_call_frequency_kept": 0.1098677749,
+  "context_counts": {
+    "hero_ip_facing_bet": 1,
+    "hero_oop_facing_bet": 3
+  },
+  "errors": {
+    "call_frequency_below_threshold": 196
+  },
+  "policy": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_10\\solver_policy_dataset.jsonl",
+    "validation": {
+      "ok": true,
+      "lines_checked": 4,
+      "errors": []
+    }
+  },
+  "qa": {
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "missing_standard_labels:NO_INVEST,CALL"
+    ],
+    "report": {
+      "input": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_10\\solver_policy_dataset.jsonl",
+      "rows": 4,
+      "accepted": 4,
+      "rejected": 0,
+      "acceptance_rate": 1.0,
+      "label_counts": {
+        "RAISE": 4
+      },
+      "street_counts": {
+        "RIVER": 4
+      },
+      "reject_reasons": {},
+      "mean_dominant_frequency": 0.8899712251,
+      "iterations": {
+        "count": 4,
+        "min": 25,
+        "max": 25,
+        "mean": 25.0
+      },
+      "root_exploitability_pct": {
+        "count": 4,
+        "min": 0.0017986559,
+        "max": 0.0037158602,
+        "mean": 0.0030669355
+      },
+      "thresholds": {
+        "min_iterations": 25,
+        "max_exploitability": 0.5,
+        "min_dominant_frequency": 0.0,
+        "require_quality": true,
+        "required_labels": []
+      }
+    }
+  },
+  "features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_10\\model_input_from_solver_policy.csv",
+    "written": 4,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent"
+    ]
+  },
+  "soft_features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_10\\model_input_soft_policy.csv",
+    "written": 4,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent",
+      "target_freq_no_invest",
+      "target_freq_call",
+      "target_freq_raise"
+    ]
+  },
+  "accepted_features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_10\\model_input_from_accepted_policy.csv",
+    "written": 4,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent"
+    ]
+  },
+  "accepted_soft_features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_10\\model_input_soft_policy_accepted.csv",
+    "written": 4,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent",
+      "target_freq_no_invest",
+      "target_freq_call",
+      "target_freq_raise"
+    ]
+  }
+}

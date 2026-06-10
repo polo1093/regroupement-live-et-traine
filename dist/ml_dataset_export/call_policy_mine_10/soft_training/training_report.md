@@ -1,0 +1,74 @@
+# Solver Soft Policy Training
+
+Status: `ok`
+
+## Dataset
+
+```json
+{
+  "rows": 4,
+  "split_distribution": {
+    "test": 1,
+    "train": 2,
+    "validation": 1
+  },
+  "street_distribution": {
+    "RIVER": 4
+  },
+  "label_distribution": {
+    "RAISE": 4
+  },
+  "target_means": {
+    "target_freq_no_invest": 0.000161,
+    "target_freq_call": 0.109868,
+    "target_freq_raise": 0.889971
+  }
+}
+```
+
+## Stages
+
+### river
+
+```json
+{
+  "status": "ok",
+  "stage": "river",
+  "selected_model": "random_forest_regressor",
+  "rows": 4,
+  "rows_train": 2,
+  "rows_validation": 1,
+  "rows_test": 1,
+  "feature_names": [
+    "features.hero_position",
+    "features.pot_bb",
+    "features.to_call_bb",
+    "features.effective_stack_bb",
+    "features.can_check",
+    "features.can_call",
+    "features.can_raise",
+    "features.players_active",
+    "features.equity_win",
+    "features.call_max_bb",
+    "features.call_margin_bb",
+    "features.bet_size_bb"
+  ],
+  "target_means": {
+    "target_freq_no_invest": 0.000161,
+    "target_freq_call": 0.109868,
+    "target_freq_raise": 0.889971
+  },
+  "mae": 0.01058,
+  "rmse": 0.012958,
+  "per_target_mae": {
+    "target_freq_no_invest": 0.0,
+    "target_freq_call": 0.01587,
+    "target_freq_raise": 0.01587
+  },
+  "prediction_target_means": {
+    "target_freq_no_invest": 0.000161,
+    "target_freq_call": 0.115269,
+    "target_freq_raise": 0.88457
+  }
+}
+```

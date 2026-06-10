@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [
+    "missing_standard_labels:CALL"
+  ],
+  "report": {
+    "input": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_diverse_20\\solver_policy_dataset.jsonl",
+    "rows": 20,
+    "accepted": 20,
+    "rejected": 0,
+    "acceptance_rate": 1.0,
+    "label_counts": {
+      "NO_INVEST": 19,
+      "RAISE": 1
+    },
+    "street_counts": {
+      "RIVER": 20
+    },
+    "reject_reasons": {},
+    "mean_dominant_frequency": 0.756056707,
+    "iterations": {
+      "count": 20,
+      "min": 25,
+      "max": 25,
+      "mean": 25.0
+    },
+    "root_exploitability_pct": {
+      "count": 20,
+      "min": 0.0017091398,
+      "max": 0.0708233297,
+      "mean": 0.0619362683
+    },
+    "thresholds": {
+      "min_iterations": 25,
+      "max_exploitability": 0.5,
+      "min_dominant_frequency": 0.0,
+      "require_quality": true,
+      "required_labels": []
+    }
+  }
+}

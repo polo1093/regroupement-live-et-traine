@@ -1,0 +1,2 @@
+features.hero_position,features.pot_bb,features.to_call_bb,features.effective_stack_bb,features.can_check,features.can_call,features.can_raise,features.players_active,features.equity_win,features.call_max_bb,features.call_margin_bb,features.bet_size_bb
+OOP,0.2,0.06,1.0,0.0,1.0,1.0,2.0,0.3013333333,0.086259542,0.026259542,0.06

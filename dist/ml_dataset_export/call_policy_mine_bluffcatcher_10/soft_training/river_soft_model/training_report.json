@@ -1,0 +1,40 @@
+{
+  "status": "ok",
+  "stage": "river",
+  "selected_model": "random_forest_regressor",
+  "rows": 10,
+  "rows_train": 7,
+  "rows_validation": 2,
+  "rows_test": 1,
+  "feature_names": [
+    "features.hero_position",
+    "features.pot_bb",
+    "features.to_call_bb",
+    "features.effective_stack_bb",
+    "features.can_check",
+    "features.can_call",
+    "features.can_raise",
+    "features.players_active",
+    "features.equity_win",
+    "features.call_max_bb",
+    "features.call_margin_bb",
+    "features.bet_size_bb"
+  ],
+  "target_means": {
+    "target_freq_no_invest": 0.783542,
+    "target_freq_call": 0.216136,
+    "target_freq_raise": 0.000322
+  },
+  "mae": 0.0,
+  "rmse": 0.0,
+  "per_target_mae": {
+    "target_freq_no_invest": 0.0,
+    "target_freq_call": 0.0,
+    "target_freq_raise": 0.0
+  },
+  "prediction_target_means": {
+    "target_freq_no_invest": 0.783542,
+    "target_freq_call": 0.216136,
+    "target_freq_raise": 0.000322
+  }
+}

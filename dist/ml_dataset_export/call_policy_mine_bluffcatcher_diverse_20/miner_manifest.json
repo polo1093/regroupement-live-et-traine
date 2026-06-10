@@ -1,0 +1,189 @@
+{
+  "status": "ok",
+  "output_dir": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_diverse_20",
+  "target_rows": 20,
+  "kept": 20,
+  "attempts": 36,
+  "acceptance_rate": 0.5555555556,
+  "min_call_frequency": 0.05,
+  "mean_call_frequency_kept": 0.2436293428,
+  "context_counts": {
+    "hero_oop_bluffcatcher": 12,
+    "hero_ip_bluffcatcher": 8
+  },
+  "geometry_counts": {
+    "pot=10|to_call=0.5|bet=0.5": 3,
+    "pot=10|to_call=0.5|bet=0.75": 2,
+    "pot=12|to_call=0.25|bet=0.33": 1,
+    "pot=12|to_call=0.25|bet=1.0": 2,
+    "pot=12|to_call=0.5|bet=0.33": 2,
+    "pot=12|to_call=0.5|bet=0.5": 1,
+    "pot=12|to_call=0.5|bet=0.75": 1,
+    "pot=16|to_call=0.5|bet=1.0": 2,
+    "pot=20|to_call=0.5|bet=0.33": 1,
+    "pot=20|to_call=0.5|bet=0.66": 1,
+    "pot=20|to_call=0.5|bet=1.0": 1,
+    "pot=8|to_call=0.25|bet=0.5": 1,
+    "pot=8|to_call=0.5|bet=0.5": 2
+  },
+  "unique_geometries": 13,
+  "errors": {
+    "call_frequency_below_threshold": 16
+  },
+  "policy": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_diverse_20\\solver_policy_dataset.jsonl",
+    "validation": {
+      "ok": true,
+      "lines_checked": 20,
+      "errors": []
+    }
+  },
+  "qa": {
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "missing_standard_labels:CALL"
+    ],
+    "report": {
+      "input": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_diverse_20\\solver_policy_dataset.jsonl",
+      "rows": 20,
+      "accepted": 20,
+      "rejected": 0,
+      "acceptance_rate": 1.0,
+      "label_counts": {
+        "NO_INVEST": 19,
+        "RAISE": 1
+      },
+      "street_counts": {
+        "RIVER": 20
+      },
+      "reject_reasons": {},
+      "mean_dominant_frequency": 0.756056707,
+      "iterations": {
+        "count": 20,
+        "min": 25,
+        "max": 25,
+        "mean": 25.0
+      },
+      "root_exploitability_pct": {
+        "count": 20,
+        "min": 0.0017091398,
+        "max": 0.0708233297,
+        "mean": 0.0619362683
+      },
+      "thresholds": {
+        "min_iterations": 25,
+        "max_exploitability": 0.5,
+        "min_dominant_frequency": 0.0,
+        "require_quality": true,
+        "required_labels": []
+      }
+    }
+  },
+  "features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_diverse_20\\model_input_from_solver_policy.csv",
+    "written": 20,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent"
+    ]
+  },
+  "soft_features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_diverse_20\\model_input_soft_policy.csv",
+    "written": 20,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent",
+      "target_freq_no_invest",
+      "target_freq_call",
+      "target_freq_raise"
+    ]
+  },
+  "accepted_features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_diverse_20\\model_input_from_accepted_policy.csv",
+    "written": 20,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent"
+    ]
+  },
+  "accepted_soft_features": {
+    "output": "..\\..\\dist\\ml_dataset_export\\call_policy_mine_bluffcatcher_diverse_20\\model_input_soft_policy_accepted.csv",
+    "written": 20,
+    "columns": [
+      "source_dataset",
+      "source_row_id",
+      "hand_id",
+      "stage_group",
+      "metadata.street",
+      "split",
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.bet_size_bb",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "label_3intent",
+      "target_freq_no_invest",
+      "target_freq_call",
+      "target_freq_raise"
+    ]
+  }
+}

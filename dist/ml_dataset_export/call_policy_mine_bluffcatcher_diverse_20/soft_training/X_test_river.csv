@@ -1,0 +1,4 @@
+features.hero_position,features.pot_bb,features.to_call_bb,features.effective_stack_bb,features.can_check,features.can_call,features.can_raise,features.players_active,features.equity_win,features.call_max_bb,features.call_margin_bb,features.bet_size_bb
+IP,0.1,0.005,1.0,0.0,1.0,1.0,2.0,0.4723333333,0.0895135818,0.0845135818,0.005
+IP,0.1,0.005,1.0,0.0,1.0,1.0,2.0,0.3783333333,0.0608579088,0.0558579088,0.005
+OOP,0.2,0.005,1.0,0.0,1.0,1.0,2.0,0.4656666667,0.1742981909,0.1692981909,0.005

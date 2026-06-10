@@ -1,0 +1,2 @@
+source_dataset,source_row_id,hand_id,stage_group,metadata.street,split,features.hero_position,features.pot_bb,features.to_call_bb,features.effective_stack_bb,features.can_check,features.can_call,features.can_raise,features.players_active,features.bet_size_bb,features.equity_win,features.call_max_bb,features.call_margin_bb,label_3intent
+solver_policy,45074a0d0e1ae7c104e914ddf63f3cc03f6f83dd,snapshot_cli_smoke,RIVER,RIVER,train,IP,2.4,0.0,12.0,1.0,0.0,1.0,2.0,1.584,0.787,8.8676056338,8.8676056338,RAISE

@@ -1,0 +1,48 @@
+{
+  "ok": false,
+  "errors": [
+    "missing_required_labels:CALL"
+  ],
+  "warnings": [
+    "missing_standard_labels:CALL"
+  ],
+  "report": {
+    "input": "../../dist/ml_dataset_export/solver_policy_pilot_100_iter25/solver_policy_dataset.jsonl",
+    "rows": 100,
+    "accepted": 100,
+    "rejected": 0,
+    "acceptance_rate": 1.0,
+    "label_counts": {
+      "RAISE": 46,
+      "NO_INVEST": 54
+    },
+    "street_counts": {
+      "RIVER": 100
+    },
+    "reject_reasons": {},
+    "mean_dominant_frequency": 0.9792799679,
+    "iterations": {
+      "count": 100,
+      "min": 25,
+      "max": 25,
+      "mean": 25.0
+    },
+    "root_exploitability_pct": {
+      "count": 100,
+      "min": 0.0029192652,
+      "max": 0.0623550063,
+      "mean": 0.0360087729
+    },
+    "thresholds": {
+      "min_iterations": 25,
+      "max_exploitability": 0.5,
+      "min_dominant_frequency": 0.0,
+      "require_quality": true,
+      "required_labels": [
+        "NO_INVEST",
+        "CALL",
+        "RAISE"
+      ]
+    }
+  }
+}

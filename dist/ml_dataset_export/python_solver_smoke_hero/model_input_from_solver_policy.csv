@@ -1,0 +1,2 @@
+source_dataset,source_row_id,hand_id,stage_group,metadata.street,split,features.hero_position,features.pot_bb,features.to_call_bb,features.effective_stack_bb,features.can_check,features.can_call,features.can_raise,features.players_active,features.bet_size_bb,features.equity_win,features.call_max_bb,features.call_margin_bb,label_3intent
+solver_policy,e812535eb0344c3b54e4546c23fa38f06bb784ac,synthetic_hero_snapshot_hero_oop_check_or_bet_river_seed_2085229277_000000,RIVER,RIVER,train,OOP,0.1,0.0,1.0,1.0,0.0,1.0,2.0,0.033,0.7633333333,0.3225352112,0.3225352112,RAISE
