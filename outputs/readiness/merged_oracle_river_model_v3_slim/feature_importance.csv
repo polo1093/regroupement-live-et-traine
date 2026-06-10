@@ -1,0 +1,13 @@
+feature,importance
+features.equity_win,0.26061873
+features.pot_bb,0.22578038
+features.call_max_bb,0.18358417
+features.call_margin_bb,0.14275362
+features.effective_stack_bb,0.07072185
+features.hero_position,0.04399387
+features.to_call_bb,0.03396042
+features.bet_size_bb,0.02431717
+features.can_check,0.00549052
+features.players_active,0.00505853
+features.can_raise,0.00321906
+features.can_call,0.00050167

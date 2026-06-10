@@ -1,0 +1,236 @@
+{
+  "accuracy": 0.835998,
+  "classification_report": {
+    "CALL": {
+      "f1-score": 0.7300079176563737,
+      "precision": 0.6073781291172595,
+      "recall": 0.9146825396825397,
+      "support": 504.0
+    },
+    "NO_INVEST": {
+      "f1-score": 0.8619991906110887,
+      "precision": 0.9603246167718665,
+      "recall": 0.7819383259911894,
+      "support": 1362.0
+    },
+    "RAISE": {
+      "f1-score": 0.9440993788819876,
+      "precision": 0.9470404984423676,
+      "recall": 0.9411764705882353,
+      "support": 323.0
+    },
+    "accuracy": 0.8359981726815897,
+    "macro avg": {
+      "f1-score": 0.8453688290498166,
+      "precision": 0.838247748110498,
+      "recall": 0.879265778753988,
+      "support": 2189.0
+    },
+    "weighted avg": {
+      "f1-score": 0.8437236123755127,
+      "precision": 0.8771013184628897,
+      "recall": 0.8359981726815897,
+      "support": 2189.0
+    }
+  },
+  "confusion_matrix": {
+    "CALL": {
+      "CALL": 461,
+      "NO_INVEST": 37,
+      "RAISE": 6
+    },
+    "NO_INVEST": {
+      "CALL": 286,
+      "NO_INVEST": 1065,
+      "RAISE": 11
+    },
+    "RAISE": {
+      "CALL": 12,
+      "NO_INVEST": 7,
+      "RAISE": 304
+    }
+  },
+  "feature_count": 12,
+  "feature_formulas": {
+    "features.bet_size_bb": "Available/source bet size in BB. In live, derived from to_call or raise buttons; in train, mapped from features.bet_size_bb.",
+    "features.call_margin_bb": "call_max_bb - to_call_bb.",
+    "features.call_max_bb": "Maximum profitable call in big blinds. In live = call_max / big_blind.",
+    "features.can_call": "1 if call is legal and to_call_bb > 0, else 0.",
+    "features.can_check": "1 if check is currently legal, else 0.",
+    "features.can_raise": "1 if bet/raise/all-in is legal, else 0.",
+    "features.effective_stack_bb": "min(hero_stack, max(active_villain_stacks)) / big_blind; folded players excluded.",
+    "features.equity_win": "Single model equity against active opponents; in live = DecisionInput.equity.",
+    "features.hero_position": "Normalized hero position: SB, BB, BTN, CO, MP, UTG, else UNKNOWN.",
+    "features.players_active": "current players still in pot, hero included; live = active_opponents + 1 (fallback).",
+    "features.pot_bb": "pot / big_blind.",
+    "features.to_call_bb": "to_call / big_blind; 0.0 for a free check."
+  },
+  "feature_importance_top_20": [
+    {
+      "feature": "features.bet_size_bb",
+      "importance": 0.41433777
+    },
+    {
+      "feature": "features.can_check",
+      "importance": 0.23221402
+    },
+    {
+      "feature": "features.pot_bb",
+      "importance": 0.11780149
+    },
+    {
+      "feature": "features.hero_position",
+      "importance": 0.0648413
+    },
+    {
+      "feature": "features.effective_stack_bb",
+      "importance": 0.06155659
+    },
+    {
+      "feature": "features.equity_win",
+      "importance": 0.03612297
+    },
+    {
+      "feature": "features.call_margin_bb",
+      "importance": 0.02669823
+    },
+    {
+      "feature": "features.call_max_bb",
+      "importance": 0.0257547
+    },
+    {
+      "feature": "features.can_raise",
+      "importance": 0.0059302
+    },
+    {
+      "feature": "features.to_call_bb",
+      "importance": 0.00577024
+    },
+    {
+      "feature": "features.can_call",
+      "importance": 0.00514467
+    },
+    {
+      "feature": "features.players_active",
+      "importance": 0.00382781
+    }
+  ],
+  "feature_names": [
+    "features.hero_position",
+    "features.pot_bb",
+    "features.to_call_bb",
+    "features.effective_stack_bb",
+    "features.can_check",
+    "features.can_call",
+    "features.can_raise",
+    "features.players_active",
+    "features.equity_win",
+    "features.call_max_bb",
+    "features.call_margin_bb",
+    "features.bet_size_bb"
+  ],
+  "label_distribution": {
+    "CALL": 2681,
+    "NO_INVEST": 6898,
+    "RAISE": 1680
+  },
+  "leakage_columns_used_by_model": [],
+  "learning_curve": [
+    {
+      "model": "extra_trees",
+      "rows_train": 790,
+      "train_fraction": 0.1,
+      "train_macro_f1": 0.922994,
+      "validation_accuracy": 0.798978,
+      "validation_macro_f1": 0.81509
+    },
+    {
+      "model": "extra_trees",
+      "rows_train": 1974,
+      "train_fraction": 0.25,
+      "train_macro_f1": 0.905982,
+      "validation_accuracy": 0.813458,
+      "validation_macro_f1": 0.830159
+    },
+    {
+      "model": "extra_trees",
+      "rows_train": 3948,
+      "train_fraction": 0.5,
+      "train_macro_f1": 0.901515,
+      "validation_accuracy": 0.819421,
+      "validation_macro_f1": 0.835399
+    },
+    {
+      "model": "extra_trees",
+      "rows_train": 5922,
+      "train_fraction": 0.75,
+      "train_macro_f1": 0.891279,
+      "validation_accuracy": 0.818569,
+      "validation_macro_f1": 0.835946
+    },
+    {
+      "model": "extra_trees",
+      "rows_train": 7896,
+      "train_fraction": 1.0,
+      "train_macro_f1": 0.890275,
+      "validation_accuracy": 0.822828,
+      "validation_macro_f1": 0.840473
+    }
+  ],
+  "macro_f1": 0.845369,
+  "model_path": "c:\\Users\\polo\\Pictures\\Cours Info\\Programme\\regroupement live et traine\\outputs\\readiness\\merged_oracle_flop_model_v3_slim\\model.joblib",
+  "performance_by_source_dataset": {
+    "PokerBench": {
+      "accuracy": 0.590164,
+      "macro_f1": 0.539963,
+      "rows": 122
+    },
+    "jevonmao/gtow-llama-sft-v3": {
+      "accuracy": 0.844444,
+      "macro_f1": 0.858832,
+      "rows": 1890
+    },
+    "jevonmao/poker-gto-100k": {
+      "accuracy": 0.915254,
+      "macro_f1": 0.934061,
+      "rows": 177
+    }
+  },
+  "precision_CALL": 0.607378,
+  "precision_NO_INVEST": 0.960325,
+  "precision_RAISE": 0.94704,
+  "recall_CALL": 0.914683,
+  "recall_NO_INVEST": 0.781938,
+  "recall_RAISE": 0.941176,
+  "rows_test": 2189,
+  "rows_train": 7896,
+  "rows_validation": 1174,
+  "schema": "v3_slim_stage_model",
+  "selected_model": "extra_trees",
+  "skipped_model_candidates": {},
+  "source_distribution_test": {
+    "PokerBench": 122,
+    "jevonmao/gtow-llama-sft-v3": 1890,
+    "jevonmao/poker-gto-100k": 177
+  },
+  "stage": "FLOP",
+  "status": "ok",
+  "validation_model_comparison": {
+    "extra_trees": {
+      "accuracy": 0.822828,
+      "macro_f1": 0.840473,
+      "weighted_f1": 0.82907
+    },
+    "lightgbm": {
+      "accuracy": 0.818569,
+      "macro_f1": 0.838926,
+      "weighted_f1": 0.825183
+    },
+    "random_forest": {
+      "accuracy": 0.806644,
+      "macro_f1": 0.83135,
+      "weighted_f1": 0.814175
+    }
+  },
+  "weighted_f1": 0.843724
+}

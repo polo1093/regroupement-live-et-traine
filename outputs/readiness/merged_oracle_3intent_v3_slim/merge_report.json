@@ -1,0 +1,197 @@
+{
+  "critical_feature_coverage": {
+    "features.call_margin_bb": 1.0,
+    "features.call_max_bb": 1.0,
+    "features.equity_win": 1.0,
+    "features.players_active": 1.0
+  },
+  "dropped_missing_core_features": {
+    "missing_by_feature": {
+      "features.call_margin_bb": 0,
+      "features.call_max_bb": 0,
+      "features.equity_win": 0,
+      "features.players_active": 0
+    },
+    "rows_after": 206145,
+    "rows_before": 206145,
+    "rows_dropped": 0
+  },
+  "feature_columns_by_stage": {
+    "flop": [
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "features.bet_size_bb"
+    ],
+    "preflop": [
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb"
+    ],
+    "river": [
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "features.bet_size_bb"
+    ],
+    "turn": [
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "features.bet_size_bb"
+    ]
+  },
+  "feature_count_by_stage": {
+    "flop": 12,
+    "preflop": 11,
+    "river": 12,
+    "turn": 12
+  },
+  "feature_formulas": {
+    "features.bet_size_bb": "Available/source bet size in BB. In live, derived from to_call or raise buttons; in train, mapped from features.bet_size_bb.",
+    "features.call_margin_bb": "call_max_bb - to_call_bb.",
+    "features.call_max_bb": "Maximum profitable call in big blinds. In live = call_max / big_blind.",
+    "features.can_call": "1 if call is legal and to_call_bb > 0, else 0.",
+    "features.can_check": "1 if check is currently legal, else 0.",
+    "features.can_raise": "1 if bet/raise/all-in is legal, else 0.",
+    "features.effective_stack_bb": "min(hero_stack, max(active_villain_stacks)) / big_blind; folded players excluded.",
+    "features.equity_win": "Single model equity against active opponents; in live = DecisionInput.equity.",
+    "features.hero_position": "Normalized hero position: SB, BB, BTN, CO, MP, UTG, else UNKNOWN.",
+    "features.players_active": "current players still in pot, hero included; live = active_opponents + 1 (fallback).",
+    "features.pot_bb": "pot / big_blind.",
+    "features.to_call_bb": "to_call / big_blind; 0.0 for a free check."
+  },
+  "generation_timestamp": "2026-06-09T19:04:16.433565+00:00",
+  "label_distribution": {
+    "CALL": 65422,
+    "NO_INVEST": 103027,
+    "RAISE": 37696
+  },
+  "leakage_columns_used_by_x": [],
+  "output_dir": "c:\\Users\\polo\\Pictures\\Cours Info\\Programme\\regroupement live et traine\\outputs\\readiness\\merged_oracle_3intent_v3_slim",
+  "player_count_policy": {
+    "current_proxy": "V3 slim maps players_active from features.num_players until live players[] reconstruction is wired.",
+    "players_active": "current players still in pot, hero included"
+  },
+  "random_seed": 17,
+  "removed_redundant_features": [
+    "metadata.street",
+    "features.source_ev_bb",
+    "features.equity_1v1",
+    "features.equity_required",
+    "features.equity_gap",
+    "features.has_fold",
+    "features.num_bets",
+    "features.call_ev_bb",
+    "features.stack_to_pot_ratio",
+    "features.to_call_pot_ratio",
+    "features.players_folded",
+    "features.prior_bet_raise_count",
+    "features.prior_call_count",
+    "features.prior_check_count",
+    "features.action_count",
+    "features.board_card_count"
+  ],
+  "rows_by_stage_and_source": {
+    "flop": {
+      "PokerBench": 635,
+      "jevonmao/gtow-llama-sft-v3": 9725,
+      "jevonmao/poker-gto-100k": 899
+    },
+    "preflop": {
+      "PokerBench": 63200,
+      "jevonmao/gtow-llama-sft-v3": 11600,
+      "oscar6echo/Poker2": 507,
+      "py-poker-equity": 507
+    },
+    "river": {
+      "PokerBench": 5268,
+      "jevonmao/gtow-llama-sft-v3": 4209,
+      "jevonmao/poker-gto-100k": 80386
+    },
+    "turn": {
+      "PokerBench": 4097,
+      "jevonmao/gtow-llama-sft-v3": 6397,
+      "jevonmao/poker-gto-100k": 18715
+    }
+  },
+  "schema_version": "merged_oracle_3intent_v3_slim",
+  "source_dataset_excluded_from_x": true,
+  "source_rows": {
+    "PokerBench": 73200,
+    "jevonmao/gtow-llama-sft-v3": 31931,
+    "jevonmao/poker-gto-100k": 100000,
+    "oscar6echo/Poker2": 507,
+    "py-poker-equity": 507
+  },
+  "split_distribution_by_stage": {
+    "flop": {
+      "test": 2189,
+      "train": 7896,
+      "validation": 1174
+    },
+    "preflop": {
+      "test": 15163,
+      "train": 53070,
+      "validation": 7581
+    },
+    "river": {
+      "test": 17996,
+      "train": 62893,
+      "validation": 8974
+    },
+    "turn": {
+      "test": 5881,
+      "train": 20443,
+      "validation": 2885
+    }
+  },
+  "stage_group_distribution": {
+    "POSTFLOP": 130331,
+    "PREFLOP": 75814
+  },
+  "status": "ok",
+  "street_distribution": {
+    "FLOP": 11259,
+    "PREFLOP": 75814,
+    "RIVER": 89863,
+    "TURN": 29209
+  },
+  "target_column": "label_3intent",
+  "warnings": [
+    "features.bet_size_bb is used only by flop/turn/river models and must be computed from legal live sizing before prediction.",
+    "metadata.street is not a model feature; it only routes rows to the flop, turn, or river model."
+  ]
+}

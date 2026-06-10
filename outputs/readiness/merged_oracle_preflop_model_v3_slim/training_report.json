@@ -1,0 +1,236 @@
+{
+  "accuracy": 0.868364,
+  "classification_report": {
+    "CALL": {
+      "f1-score": 0.8862234986063012,
+      "precision": 0.8578904333605887,
+      "recall": 0.916491963661775,
+      "support": 5724.0
+    },
+    "NO_INVEST": {
+      "f1-score": 0.8675710594315246,
+      "precision": 0.9347485644684183,
+      "recall": 0.8094018381799005,
+      "support": 6637.0
+    },
+    "RAISE": {
+      "f1-score": 0.8353268884155334,
+      "precision": 0.7721902453801878,
+      "recall": 0.9097073518915061,
+      "support": 2802.0
+    },
+    "accuracy": 0.8683637802545671,
+    "macro avg": {
+      "f1-score": 0.8630404821511197,
+      "precision": 0.8549430810697315,
+      "recall": 0.8785337179110605,
+      "support": 15163.0
+    },
+    "weighted avg": {
+      "f1-score": 0.8686538527210856,
+      "precision": 0.875695319559994,
+      "recall": 0.8683637802545671,
+      "support": 15163.0
+    }
+  },
+  "confusion_matrix": {
+    "CALL": {
+      "CALL": 5246,
+      "NO_INVEST": 316,
+      "RAISE": 162
+    },
+    "NO_INVEST": {
+      "CALL": 675,
+      "NO_INVEST": 5372,
+      "RAISE": 590
+    },
+    "RAISE": {
+      "CALL": 194,
+      "NO_INVEST": 59,
+      "RAISE": 2549
+    }
+  },
+  "feature_count": 11,
+  "feature_formulas": {
+    "features.call_margin_bb": "call_max_bb - to_call_bb.",
+    "features.call_max_bb": "Maximum profitable call in big blinds. In live = call_max / big_blind.",
+    "features.can_call": "1 if call is legal and to_call_bb > 0, else 0.",
+    "features.can_check": "1 if check is currently legal, else 0.",
+    "features.can_raise": "1 if bet/raise/all-in is legal, else 0.",
+    "features.effective_stack_bb": "min(hero_stack, max(active_villain_stacks)) / big_blind; folded players excluded.",
+    "features.equity_win": "Single model equity against active opponents; in live = DecisionInput.equity.",
+    "features.hero_position": "Normalized hero position: SB, BB, BTN, CO, MP, UTG, else UNKNOWN.",
+    "features.players_active": "current players still in pot, hero included; live = active_opponents + 1 (fallback).",
+    "features.pot_bb": "pot / big_blind.",
+    "features.to_call_bb": "to_call / big_blind; 0.0 for a free check."
+  },
+  "feature_importance_top_20": [
+    {
+      "feature": "features.equity_win",
+      "importance": 0.3162068
+    },
+    {
+      "feature": "features.pot_bb",
+      "importance": 0.1671126
+    },
+    {
+      "feature": "features.call_margin_bb",
+      "importance": 0.14466276
+    },
+    {
+      "feature": "features.call_max_bb",
+      "importance": 0.12395485
+    },
+    {
+      "feature": "features.to_call_bb",
+      "importance": 0.10863991
+    },
+    {
+      "feature": "features.hero_position",
+      "importance": 0.07001115
+    },
+    {
+      "feature": "features.players_active",
+      "importance": 0.04664158
+    },
+    {
+      "feature": "features.effective_stack_bb",
+      "importance": 0.01339186
+    },
+    {
+      "feature": "features.can_raise",
+      "importance": 0.0076087
+    },
+    {
+      "feature": "features.can_check",
+      "importance": 0.00093367
+    },
+    {
+      "feature": "features.can_call",
+      "importance": 0.00083612
+    }
+  ],
+  "feature_names": [
+    "features.hero_position",
+    "features.pot_bb",
+    "features.to_call_bb",
+    "features.effective_stack_bb",
+    "features.can_check",
+    "features.can_call",
+    "features.can_raise",
+    "features.players_active",
+    "features.equity_win",
+    "features.call_max_bb",
+    "features.call_margin_bb"
+  ],
+  "label_distribution": {
+    "CALL": 28590,
+    "NO_INVEST": 33187,
+    "RAISE": 14037
+  },
+  "leakage_columns_used_by_model": [],
+  "learning_curve": [
+    {
+      "model": "lightgbm",
+      "rows_train": 5307,
+      "train_fraction": 0.1,
+      "train_macro_f1": 0.945628,
+      "validation_accuracy": 0.837225,
+      "validation_macro_f1": 0.83444
+    },
+    {
+      "model": "lightgbm",
+      "rows_train": 13267,
+      "train_fraction": 0.25,
+      "train_macro_f1": 0.925965,
+      "validation_accuracy": 0.853977,
+      "validation_macro_f1": 0.849989
+    },
+    {
+      "model": "lightgbm",
+      "rows_train": 26535,
+      "train_fraction": 0.5,
+      "train_macro_f1": 0.906955,
+      "validation_accuracy": 0.871389,
+      "validation_macro_f1": 0.866829
+    },
+    {
+      "model": "lightgbm",
+      "rows_train": 39803,
+      "train_fraction": 0.75,
+      "train_macro_f1": 0.89995,
+      "validation_accuracy": 0.871917,
+      "validation_macro_f1": 0.868026
+    },
+    {
+      "model": "lightgbm",
+      "rows_train": 53070,
+      "train_fraction": 1.0,
+      "train_macro_f1": 0.894076,
+      "validation_accuracy": 0.877061,
+      "validation_macro_f1": 0.873043
+    }
+  ],
+  "macro_f1": 0.86304,
+  "model_path": "c:\\Users\\polo\\Pictures\\Cours Info\\Programme\\regroupement live et traine\\outputs\\readiness\\merged_oracle_preflop_model_v3_slim\\model.joblib",
+  "performance_by_source_dataset": {
+    "PokerBench": {
+      "accuracy": 0.886794,
+      "macro_f1": 0.876581,
+      "rows": 12570
+    },
+    "jevonmao/gtow-llama-sft-v3": {
+      "accuracy": 0.760587,
+      "macro_f1": 0.678464,
+      "rows": 2385
+    },
+    "oscar6echo/Poker2": {
+      "accuracy": 0.990566,
+      "macro_f1": 0.988964,
+      "rows": 106
+    },
+    "py-poker-equity": {
+      "accuracy": 0.990196,
+      "macro_f1": 0.984917,
+      "rows": 102
+    }
+  },
+  "precision_CALL": 0.85789,
+  "precision_NO_INVEST": 0.934749,
+  "precision_RAISE": 0.77219,
+  "recall_CALL": 0.916492,
+  "recall_NO_INVEST": 0.809402,
+  "recall_RAISE": 0.909707,
+  "rows_test": 15163,
+  "rows_train": 53070,
+  "rows_validation": 7581,
+  "schema": "v3_slim_stage_model",
+  "selected_model": "lightgbm",
+  "skipped_model_candidates": {},
+  "source_distribution_test": {
+    "PokerBench": 12570,
+    "jevonmao/gtow-llama-sft-v3": 2385,
+    "oscar6echo/Poker2": 106,
+    "py-poker-equity": 102
+  },
+  "stage": "PREFLOP",
+  "status": "ok",
+  "validation_model_comparison": {
+    "extra_trees": {
+      "accuracy": 0.846458,
+      "macro_f1": 0.843435,
+      "weighted_f1": 0.846596
+    },
+    "lightgbm": {
+      "accuracy": 0.877061,
+      "macro_f1": 0.873043,
+      "weighted_f1": 0.877286
+    },
+    "random_forest": {
+      "accuracy": 0.859781,
+      "macro_f1": 0.85668,
+      "weighted_f1": 0.859896
+    }
+  },
+  "weighted_f1": 0.868654
+}

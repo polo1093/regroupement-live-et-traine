@@ -1,0 +1,6 @@
+model,train_fraction,rows_train,train_macro_f1,validation_macro_f1,validation_accuracy
+random_forest,0.1,2044,0.953251,0.825035,0.82357
+random_forest,0.25,5111,0.929598,0.836809,0.838475
+random_forest,0.5,10222,0.905708,0.837781,0.837782
+random_forest,0.75,15332,0.892777,0.842478,0.840208
+random_forest,1.0,20443,0.887191,0.845851,0.843674

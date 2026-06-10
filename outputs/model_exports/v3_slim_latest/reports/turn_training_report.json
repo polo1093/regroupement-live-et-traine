@@ -1,0 +1,236 @@
+{
+  "accuracy": 0.847475,
+  "classification_report": {
+    "CALL": {
+      "f1-score": 0.8065506653019447,
+      "precision": 0.7569644572526417,
+      "recall": 0.8630887185104053,
+      "support": 1826.0
+    },
+    "NO_INVEST": {
+      "f1-score": 0.860473208072373,
+      "precision": 0.9220730797912006,
+      "recall": 0.8065883887801696,
+      "support": 3066.0
+    },
+    "RAISE": {
+      "f1-score": 0.8879392212725546,
+      "precision": 0.8370635631154879,
+      "recall": 0.9453993933265925,
+      "support": 989.0
+    },
+    "accuracy": 0.8474749192314233,
+    "macro avg": {
+      "f1-score": 0.8516543648822908,
+      "precision": 0.8387003667197769,
+      "recall": 0.8716921668723892,
+      "support": 5881.0
+    },
+    "weighted avg": {
+      "f1-score": 0.8483496447253536,
+      "precision": 0.8565123321721413,
+      "recall": 0.8474749192314233,
+      "support": 5881.0
+    }
+  },
+  "confusion_matrix": {
+    "CALL": {
+      "CALL": 1576,
+      "NO_INVEST": 191,
+      "RAISE": 59
+    },
+    "NO_INVEST": {
+      "CALL": 470,
+      "NO_INVEST": 2473,
+      "RAISE": 123
+    },
+    "RAISE": {
+      "CALL": 36,
+      "NO_INVEST": 18,
+      "RAISE": 935
+    }
+  },
+  "feature_count": 12,
+  "feature_formulas": {
+    "features.bet_size_bb": "Available/source bet size in BB. In live, derived from to_call or raise buttons; in train, mapped from features.bet_size_bb.",
+    "features.call_margin_bb": "call_max_bb - to_call_bb.",
+    "features.call_max_bb": "Maximum profitable call in big blinds. In live = call_max / big_blind.",
+    "features.can_call": "1 if call is legal and to_call_bb > 0, else 0.",
+    "features.can_check": "1 if check is currently legal, else 0.",
+    "features.can_raise": "1 if bet/raise/all-in is legal, else 0.",
+    "features.effective_stack_bb": "min(hero_stack, max(active_villain_stacks)) / big_blind; folded players excluded.",
+    "features.equity_win": "Single model equity against active opponents; in live = DecisionInput.equity.",
+    "features.hero_position": "Normalized hero position: SB, BB, BTN, CO, MP, UTG, else UNKNOWN.",
+    "features.players_active": "current players still in pot, hero included; live = active_opponents + 1 (fallback).",
+    "features.pot_bb": "pot / big_blind.",
+    "features.to_call_bb": "to_call / big_blind; 0.0 for a free check."
+  },
+  "feature_importance_top_20": [
+    {
+      "feature": "features.bet_size_bb",
+      "importance": 0.40596104
+    },
+    {
+      "feature": "features.can_check",
+      "importance": 0.13206323
+    },
+    {
+      "feature": "features.equity_win",
+      "importance": 0.10609855
+    },
+    {
+      "feature": "features.pot_bb",
+      "importance": 0.10502109
+    },
+    {
+      "feature": "features.call_margin_bb",
+      "importance": 0.06867493
+    },
+    {
+      "feature": "features.call_max_bb",
+      "importance": 0.05980439
+    },
+    {
+      "feature": "features.effective_stack_bb",
+      "importance": 0.05183741
+    },
+    {
+      "feature": "features.can_raise",
+      "importance": 0.02502499
+    },
+    {
+      "feature": "features.hero_position",
+      "importance": 0.01840758
+    },
+    {
+      "feature": "features.to_call_bb",
+      "importance": 0.0114941
+    },
+    {
+      "feature": "features.players_active",
+      "importance": 0.00991945
+    },
+    {
+      "feature": "features.can_call",
+      "importance": 0.00569325
+    }
+  ],
+  "feature_names": [
+    "features.hero_position",
+    "features.pot_bb",
+    "features.to_call_bb",
+    "features.effective_stack_bb",
+    "features.can_check",
+    "features.can_call",
+    "features.can_raise",
+    "features.players_active",
+    "features.equity_win",
+    "features.call_max_bb",
+    "features.call_margin_bb",
+    "features.bet_size_bb"
+  ],
+  "label_distribution": {
+    "CALL": 8938,
+    "NO_INVEST": 15199,
+    "RAISE": 5072
+  },
+  "leakage_columns_used_by_model": [],
+  "learning_curve": [
+    {
+      "model": "random_forest",
+      "rows_train": 2044,
+      "train_fraction": 0.1,
+      "train_macro_f1": 0.953251,
+      "validation_accuracy": 0.82357,
+      "validation_macro_f1": 0.825035
+    },
+    {
+      "model": "random_forest",
+      "rows_train": 5111,
+      "train_fraction": 0.25,
+      "train_macro_f1": 0.929598,
+      "validation_accuracy": 0.838475,
+      "validation_macro_f1": 0.836809
+    },
+    {
+      "model": "random_forest",
+      "rows_train": 10222,
+      "train_fraction": 0.5,
+      "train_macro_f1": 0.905708,
+      "validation_accuracy": 0.837782,
+      "validation_macro_f1": 0.837781
+    },
+    {
+      "model": "random_forest",
+      "rows_train": 15332,
+      "train_fraction": 0.75,
+      "train_macro_f1": 0.892777,
+      "validation_accuracy": 0.840208,
+      "validation_macro_f1": 0.842478
+    },
+    {
+      "model": "random_forest",
+      "rows_train": 20443,
+      "train_fraction": 1.0,
+      "train_macro_f1": 0.887191,
+      "validation_accuracy": 0.843674,
+      "validation_macro_f1": 0.845851
+    }
+  ],
+  "macro_f1": 0.851654,
+  "model_path": "c:\\Users\\polo\\Pictures\\Cours Info\\Programme\\regroupement live et traine\\outputs\\readiness\\merged_oracle_turn_model_v3_slim\\model.joblib",
+  "performance_by_source_dataset": {
+    "PokerBench": {
+      "accuracy": 0.505038,
+      "macro_f1": 0.503581,
+      "rows": 794
+    },
+    "jevonmao/gtow-llama-sft-v3": {
+      "accuracy": 0.841829,
+      "macro_f1": 0.85607,
+      "rows": 1334
+    },
+    "jevonmao/poker-gto-100k": {
+      "accuracy": 0.921929,
+      "macro_f1": 0.936394,
+      "rows": 3753
+    }
+  },
+  "precision_CALL": 0.756964,
+  "precision_NO_INVEST": 0.922073,
+  "precision_RAISE": 0.837064,
+  "recall_CALL": 0.863089,
+  "recall_NO_INVEST": 0.806588,
+  "recall_RAISE": 0.945399,
+  "rows_test": 5881,
+  "rows_train": 20443,
+  "rows_validation": 2885,
+  "schema": "v3_slim_stage_model",
+  "selected_model": "random_forest",
+  "skipped_model_candidates": {},
+  "source_distribution_test": {
+    "PokerBench": 794,
+    "jevonmao/gtow-llama-sft-v3": 1334,
+    "jevonmao/poker-gto-100k": 3753
+  },
+  "stage": "TURN",
+  "status": "ok",
+  "validation_model_comparison": {
+    "extra_trees": {
+      "accuracy": 0.825303,
+      "macro_f1": 0.828717,
+      "weighted_f1": 0.826026
+    },
+    "lightgbm": {
+      "accuracy": 0.837088,
+      "macro_f1": 0.839421,
+      "weighted_f1": 0.838064
+    },
+    "random_forest": {
+      "accuracy": 0.843674,
+      "macro_f1": 0.845851,
+      "weighted_f1": 0.844616
+    }
+  },
+  "weighted_f1": 0.84835
+}

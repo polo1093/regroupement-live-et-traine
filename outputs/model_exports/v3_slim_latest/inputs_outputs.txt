@@ -1,0 +1,77 @@
+V3 SLIM - ENTREES / SORTIES
+
+ENTREES MODELE
+-------------
+[flop]
+- features.hero_position
+- features.pot_bb
+- features.to_call_bb
+- features.effective_stack_bb
+- features.can_check
+- features.can_call
+- features.can_raise
+- features.players_active
+- features.equity_win
+- features.call_max_bb
+- features.call_margin_bb
+- features.bet_size_bb
+
+[preflop]
+- features.hero_position
+- features.pot_bb
+- features.to_call_bb
+- features.effective_stack_bb
+- features.can_check
+- features.can_call
+- features.can_raise
+- features.players_active
+- features.equity_win
+- features.call_max_bb
+- features.call_margin_bb
+
+[river]
+- features.hero_position
+- features.pot_bb
+- features.to_call_bb
+- features.effective_stack_bb
+- features.can_check
+- features.can_call
+- features.can_raise
+- features.players_active
+- features.equity_win
+- features.call_max_bb
+- features.call_margin_bb
+- features.bet_size_bb
+
+[turn]
+- features.hero_position
+- features.pot_bb
+- features.to_call_bb
+- features.effective_stack_bb
+- features.can_check
+- features.can_call
+- features.can_raise
+- features.players_active
+- features.equity_win
+- features.call_max_bb
+- features.call_margin_bb
+- features.bet_size_bb
+
+SORTIES MODELE
+--------------
+- classe predite parmi: NO_INVEST / CALL / RAISE
+- probabilites si le pipeline appelant utilise predict_proba
+
+RESOLUTION LIVE EVENTUELLE
+-------------------------
+- NO_INVEST + check possible -> CHECK
+- NO_INVEST + check impossible -> FOLD
+
+ARTEFACTS
+---------
+- preflop model: models/preflop_model.joblib
+- flop model: models/flop_model.joblib
+- turn model: models/turn_model.joblib
+- river model: models/river_model.joblib
+- feature contract: contracts/feature_contract.json
+- readiness live: live_feature_readiness.md

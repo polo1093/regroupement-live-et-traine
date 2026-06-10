@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="453" height="384" viewBox="0 0 453 384">
+<text x="20" y="30" font-size="18" font-family="Arial">Confusion matrix</text>
+<text x="123" y="121.0" text-anchor="end" font-size="10" font-family="Arial">true NO_INVEST</text>
+<rect x="135" y="76" width="82" height="82" fill="#5983cd" stroke="#ffffff"/>
+<text x="176.0" y="121.0" text-anchor="middle" font-size="11" font-family="Arial">1052</text>
+<rect x="217" y="76" width="82" height="82" fill="#c5d6ed" stroke="#ffffff"/>
+<text x="258.0" y="121.0" text-anchor="middle" font-size="11" font-family="Arial">288</text>
+<rect x="299" y="76" width="82" height="82" fill="#ebf3f9" stroke="#ffffff"/>
+<text x="340.0" y="121.0" text-anchor="middle" font-size="11" font-family="Arial">22</text>
+<text x="123" y="203.0" text-anchor="end" font-size="10" font-family="Arial">true CALL</text>
+<rect x="135" y="158" width="82" height="82" fill="#e9f1f8" stroke="#ffffff"/>
+<text x="176.0" y="203.0" text-anchor="middle" font-size="11" font-family="Arial">39</text>
+<rect x="217" y="158" width="82" height="82" fill="#adc3e6" stroke="#ffffff"/>
+<text x="258.0" y="203.0" text-anchor="middle" font-size="11" font-family="Arial">460</text>
+<rect x="299" y="158" width="82" height="82" fill="#eef5f9" stroke="#ffffff"/>
+<text x="340.0" y="203.0" text-anchor="middle" font-size="11" font-family="Arial">5</text>
+<text x="123" y="285.0" text-anchor="end" font-size="10" font-family="Arial">true RAISE</text>
+<rect x="135" y="240" width="82" height="82" fill="#eff6fa" stroke="#ffffff"/>
+<text x="176.0" y="285.0" text-anchor="middle" font-size="11" font-family="Arial">0</text>
+<rect x="217" y="240" width="82" height="82" fill="#edf4f9" stroke="#ffffff"/>
+<text x="258.0" y="285.0" text-anchor="middle" font-size="11" font-family="Arial">11</text>
+<rect x="299" y="240" width="82" height="82" fill="#c2d3ec" stroke="#ffffff"/>
+<text x="340.0" y="285.0" text-anchor="middle" font-size="11" font-family="Arial">312</text>
+</svg>

@@ -1,0 +1,6 @@
+model,train_fraction,rows_train,train_macro_f1,validation_macro_f1,validation_accuracy
+lightgbm,0.1,5307,0.781322,0.728051,0.722728
+lightgbm,0.25,13267,0.767324,0.747842,0.74225
+lightgbm,0.5,26535,0.755533,0.751953,0.747395
+lightgbm,0.75,39803,0.753246,0.753723,0.750033
+lightgbm,1.0,53070,0.748922,0.752683,0.749242

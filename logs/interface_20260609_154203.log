@@ -1,0 +1,10 @@
+15:42:03 INFO debut interface interval_ms=1000 game=PokerTH decision_mode=ml hero_position=BTN ml_dataset=True log=logs\interface_20260609_154203.log
+15:42:03 INFO debut cycle_controller count=1
+15:42:03 INFO debut workflow_scan street=IDLE
+15:42:03 INFO debut scan_table
+15:42:04 WARNING SKIP recherche_table raison=anchor_introuvable confidence=0.9
+15:42:04 DEBUG SCAN test_table status=False
+15:42:04 WARNING SKIP table_introuvable status=scan_failed
+15:42:04 WARNING fin workflow_scan status=skip raison=table_introuvable
+15:42:04 WARNING SKIP table_introuvable count=1 scan_echec=1
+15:42:04 INFO fin snapshot_cli status=ok log=logs\interface_20260609_154203.log

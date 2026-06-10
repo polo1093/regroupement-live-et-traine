@@ -1,0 +1,243 @@
+{
+  "allowed_labels": [
+    "NO_INVEST",
+    "CALL",
+    "RAISE"
+  ],
+  "critical_feature_coverage": {
+    "features.call_margin_bb": 1.0,
+    "features.call_max_bb": 1.0,
+    "features.equity_win": 1.0,
+    "features.players_active": 1.0
+  },
+  "critical_features": [
+    "features.equity_win",
+    "features.call_max_bb",
+    "features.call_margin_bb",
+    "features.players_active"
+  ],
+  "feature_count_by_stage": {
+    "flop": 12,
+    "preflop": 11,
+    "river": 12,
+    "turn": 12
+  },
+  "features_model_used_by_stage": {
+    "flop": [
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "features.bet_size_bb"
+    ],
+    "preflop": [
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb"
+    ],
+    "river": [
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "features.bet_size_bb"
+    ],
+    "turn": [
+      "features.hero_position",
+      "features.pot_bb",
+      "features.to_call_bb",
+      "features.effective_stack_bb",
+      "features.can_check",
+      "features.can_call",
+      "features.can_raise",
+      "features.players_active",
+      "features.equity_win",
+      "features.call_max_bb",
+      "features.call_margin_bb",
+      "features.bet_size_bb"
+    ]
+  },
+  "files": {
+    "feature_contract": "contracts/feature_contract.json",
+    "final_report": "reports/final_report.md",
+    "flop_model": "models/flop_model.joblib",
+    "flop_training_report": "reports/flop_training_report.json",
+    "inputs_outputs": "inputs_outputs.txt",
+    "live_feature_readiness": "live_feature_readiness.md",
+    "merge_report": "reports/merge_report.json",
+    "preflop_model": "models/preflop_model.joblib",
+    "preflop_training_report": "reports/preflop_training_report.json",
+    "river_model": "models/river_model.joblib",
+    "river_training_report": "reports/river_training_report.json",
+    "turn_model": "models/turn_model.joblib",
+    "turn_training_report": "reports/turn_training_report.json"
+  },
+  "generated_at": "2026-06-09T18:35:02.490237+00:00",
+  "live_prediction_gate": {
+    "readiness_rows": [
+      {
+        "blocking": "oui",
+        "feature": "equity_win",
+        "live_available": "oui",
+        "note": "DecisionInput.equity (probabilite 0..1).",
+        "same_calculation_as_train": "oui"
+      },
+      {
+        "blocking": "oui",
+        "feature": "call_max_bb",
+        "live_available": "oui",
+        "note": "DecisionInput.call_max / big_blind (BB).",
+        "same_calculation_as_train": "oui"
+      },
+      {
+        "blocking": "oui",
+        "feature": "call_margin_bb",
+        "live_available": "oui",
+        "note": "call_max_bb - to_call_bb.",
+        "same_calculation_as_train": "oui"
+      },
+      {
+        "blocking": "oui",
+        "feature": "players_active",
+        "live_available": "oui",
+        "note": "player_count si present, sinon active_opponents + 1.",
+        "same_calculation_as_train": "oui"
+      }
+    ],
+    "reason": "Les features slim critiques doivent etre disponibles live, normalisees en BB, et calculees comme au train.",
+    "status": "blocked_until_verified"
+  },
+  "models": {
+    "flop": {
+      "accuracy": 0.833257,
+      "macro_f1": 0.842916,
+      "recall_CALL": 0.912698,
+      "recall_NO_INVEST": 0.772394,
+      "recall_RAISE": 0.965944,
+      "rows_test": 2189,
+      "rows_train": 7896,
+      "rows_validation": 1174,
+      "selected_model": "extra_trees",
+      "stage": "FLOP",
+      "top_features": [
+        "features.bet_size_bb",
+        "features.can_check",
+        "features.pot_bb",
+        "features.effective_stack_bb",
+        "features.hero_position",
+        "features.equity_win",
+        "features.call_margin_bb",
+        "features.call_max_bb",
+        "features.can_raise",
+        "features.to_call_bb"
+      ]
+    },
+    "preflop": {
+      "accuracy": 0.735936,
+      "macro_f1": 0.738026,
+      "recall_CALL": 0.836303,
+      "recall_NO_INVEST": 0.581437,
+      "recall_RAISE": 0.896859,
+      "rows_test": 15163,
+      "rows_train": 53070,
+      "rows_validation": 7581,
+      "selected_model": "lightgbm",
+      "stage": "PREFLOP",
+      "top_features": [
+        "features.pot_bb",
+        "features.to_call_bb",
+        "features.hero_position",
+        "features.players_active",
+        "features.effective_stack_bb",
+        "features.call_margin_bb",
+        "features.can_raise",
+        "features.equity_win",
+        "features.can_call",
+        "features.call_max_bb"
+      ]
+    },
+    "river": {
+      "accuracy": 0.82096,
+      "macro_f1": 0.833687,
+      "recall_CALL": 0.813981,
+      "recall_NO_INVEST": 0.77239,
+      "recall_RAISE": 0.971687,
+      "rows_test": 17996,
+      "rows_train": 62893,
+      "rows_validation": 8974,
+      "selected_model": "lightgbm",
+      "stage": "RIVER",
+      "top_features": [
+        "features.pot_bb",
+        "features.equity_win",
+        "features.call_margin_bb",
+        "features.call_max_bb",
+        "features.to_call_bb",
+        "features.effective_stack_bb",
+        "features.hero_position",
+        "features.can_check",
+        "features.bet_size_bb",
+        "features.players_active"
+      ]
+    },
+    "turn": {
+      "accuracy": 0.847475,
+      "macro_f1": 0.851654,
+      "recall_CALL": 0.863089,
+      "recall_NO_INVEST": 0.806588,
+      "recall_RAISE": 0.945399,
+      "rows_test": 5881,
+      "rows_train": 20443,
+      "rows_validation": 2885,
+      "selected_model": "random_forest",
+      "stage": "TURN",
+      "top_features": [
+        "features.bet_size_bb",
+        "features.can_check",
+        "features.equity_win",
+        "features.pot_bb",
+        "features.call_margin_bb",
+        "features.call_max_bb",
+        "features.effective_stack_bb",
+        "features.can_raise",
+        "features.hero_position",
+        "features.to_call_bb"
+      ]
+    }
+  },
+  "output_dir": "c:\\Users\\polo\\Pictures\\Cours Info\\Programme\\regroupement live et traine\\outputs\\model_exports\\v3_slim_latest",
+  "schema": "v3_slim_model_export_bundle",
+  "source_files_sha256": {
+    "feature_contract": "16ae45f2f090ef823e366ab73bfc369ce51f75f90299543f26d6d08a70820105",
+    "final_report": "a75785fdefc3548892b5ca134bbe0012084b066f3da514d592b7904e0209dc0a",
+    "flop_model": "e84c1a3d20b988a7a1380067ae800df06446a6a84650f754fadc756347adb2db",
+    "merge_report": "03e28bf3fbc1948c1c9a6300bf125df06eed4d67ceff713120982f82b285e60e",
+    "preflop_model": "e3e07b708c67a0d4574db18f5840857896da0bbff76f34a50d6733175c70086a",
+    "river_model": "48f2114001803189aa7c1a7369ddc38f97cab9f43bdb71096847aa2e601f4d2e",
+    "turn_model": "5773760a8ae1167260d6810be249750658c545314f8684cc6003a09a5ba67c73"
+  },
+  "source_schema": "merged_oracle_3intent_v3_slim",
+  "target_column": "label_3intent"
+}

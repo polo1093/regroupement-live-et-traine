@@ -1,0 +1,6 @@
+model,train_fraction,rows_train,train_macro_f1,validation_macro_f1,validation_accuracy
+extra_trees,0.1,790,0.904585,0.80933,0.795571
+extra_trees,0.25,1974,0.884288,0.819774,0.806644
+extra_trees,0.5,3948,0.878949,0.839769,0.821976
+extra_trees,0.75,5922,0.8684,0.834971,0.816014
+extra_trees,1.0,7896,0.867432,0.839938,0.819421
