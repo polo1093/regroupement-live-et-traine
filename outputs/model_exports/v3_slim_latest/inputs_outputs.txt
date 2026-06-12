@@ -3,58 +3,62 @@ V3 SLIM - ENTREES / SORTIES
 ENTREES MODELE
 -------------
 [flop]
-- features.hero_position
-- features.pot_bb
 - features.to_call_bb
 - features.effective_stack_bb
-- features.can_check
-- features.can_call
-- features.can_raise
 - features.players_active
 - features.equity_win
+- features.equity_win_present
 - features.call_max_bb
 - features.call_margin_bb
+- features.pot_certain_bb
+- features.pot_probable_bb
+- features.pot_probable_margin_bb
+- features.ev_certain_bb
+- features.ev_probable_bb
 - features.bet_size_bb
 
 [preflop]
-- features.hero_position
-- features.pot_bb
 - features.to_call_bb
 - features.effective_stack_bb
-- features.can_check
-- features.can_call
-- features.can_raise
 - features.players_active
 - features.equity_win
+- features.equity_win_present
 - features.call_max_bb
 - features.call_margin_bb
+- features.pot_certain_bb
+- features.pot_probable_bb
+- features.pot_probable_margin_bb
+- features.ev_certain_bb
+- features.ev_probable_bb
 
 [river]
-- features.hero_position
-- features.pot_bb
 - features.to_call_bb
 - features.effective_stack_bb
-- features.can_check
-- features.can_call
-- features.can_raise
 - features.players_active
 - features.equity_win
+- features.equity_win_present
 - features.call_max_bb
 - features.call_margin_bb
+- features.pot_certain_bb
+- features.pot_probable_bb
+- features.pot_probable_margin_bb
+- features.ev_certain_bb
+- features.ev_probable_bb
 - features.bet_size_bb
 
 [turn]
-- features.hero_position
-- features.pot_bb
 - features.to_call_bb
 - features.effective_stack_bb
-- features.can_check
-- features.can_call
-- features.can_raise
 - features.players_active
 - features.equity_win
+- features.equity_win_present
 - features.call_max_bb
 - features.call_margin_bb
+- features.pot_certain_bb
+- features.pot_probable_bb
+- features.pot_probable_margin_bb
+- features.ev_certain_bb
+- features.ev_probable_bb
 - features.bet_size_bb
 
 SORTIES MODELE

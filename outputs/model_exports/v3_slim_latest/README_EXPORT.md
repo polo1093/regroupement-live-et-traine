@@ -4,16 +4,16 @@ Bundle exporte depuis `merged_oracle_preflop_postflop_v3_slim` (contrat equity-c
 
 ## Modeles
 
-- preflop: `models/preflop_model.joblib` - lightgbm - macro_f1 0.738026
-- flop: `models/flop_model.joblib` - extra_trees - macro_f1 0.842916
-- turn: `models/turn_model.joblib` - random_forest - macro_f1 0.851654
-- river: `models/river_model.joblib` - lightgbm - macro_f1 0.833687
+- preflop: `models/preflop_model.joblib` - lightgbm - macro_f1 0.856544
+- flop: `models/flop_model.joblib` - lightgbm - macro_f1 0.841547
+- turn: `models/turn_model.joblib` - lightgbm - macro_f1 0.868126
+- river: `models/river_model.joblib` - lightgbm - macro_f1 0.854537
 
 ## Important
 
 - Contrat slim verrouille: 11 features preflop, 12 features flop/turn/river.
 - 4 modeles separes: preflop, flop, turn, river.
-- Les features critiques (equity_win, call_max_bb, call_margin_bb, players_active) doivent etre disponibles live.
+- Les features critiques slim doivent etre disponibles live.
 - Le live refuse la prediction si une feature critique manque (fallback legacy).
 - Toutes les valeurs monetaires sont normalisees en big blinds.
 - Les colonnes `source_dataset`, labels, raw text et audit ne sont pas des entrees modele.

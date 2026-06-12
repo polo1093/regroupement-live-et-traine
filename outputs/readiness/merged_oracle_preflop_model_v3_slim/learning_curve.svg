@@ -3,6 +3,6 @@
 <text x="24" y="28" font-size="18" font-family="Arial">Learning curve</text>
 <line x1="70" y1="48" x2="70" y2="328" stroke="#111827"/>
 <line x1="70" y1="328" x2="690" y2="328" stroke="#111827"/>
-<polyline points="132.0,63.2 225.0,68.7 380.0,74.1 535.0,76.0 690.0,77.7" fill="none" stroke="#2563eb" stroke-width="3"/>
-<polyline points="132.0,94.4 225.0,90.0 380.0,85.3 535.0,85.0 690.0,83.5" fill="none" stroke="#dc2626" stroke-width="3"/>
+<polyline points="132.0,65.3 225.0,70.6 380.0,77.2 535.0,78.7 690.0,80.3" fill="none" stroke="#2563eb" stroke-width="3"/>
+<polyline points="132.0,97.7 225.0,93.3 380.0,88.9 535.0,88.3 690.0,87.1" fill="none" stroke="#dc2626" stroke-width="3"/>
 </svg>

@@ -40,38 +40,43 @@ def build_slim_features_from_decision_input(state: Any) -> dict[str, Any]:
     bet_size_bb = _amount_bb(bet_size, bb)
     effective_stack_bb = _amount_bb(_positive_float(state.effective_stack), bb)
 
-    # can_check, can_call, can_raise derived from active buttons
-    buttons = list(state.buttons)
-    can_check = _has_button(buttons, {"check"})
-    can_call = _has_button(buttons, {"paie", "call"}) and (to_call or 0) > 0
-    can_raise = _has_button(buttons, {"mise", "relance", "raise", "all-in"})
-
     # players_active from DecisionInput
     players_active = _players_active(state)
+    players_present = _players_present(state, players_active)
+    equity_present = _equity_win_present(equity_global, players_active, players_present)
+    pot_certainty = _pot_certainty_features(
+        pot_bb=pot_bb,
+        to_call_bb=to_call_bb,
+        players_active=players_active,
+        equity_win=equity_global,
+    )
     # Refuse to build a slim row missing any critical feature
     critical = {
         "features.equity_win": equity_global,
+        "features.equity_win_present": equity_present,
         "features.call_max_bb": call_max_bb,
         "features.call_margin_bb": call_margin_bb,
         "features.players_active": players_active,
+        "features.pot_certain_bb": pot_certainty["features.pot_certain_bb"],
+        "features.pot_probable_bb": pot_certainty["features.pot_probable_bb"],
+        "features.pot_probable_margin_bb": pot_certainty["features.pot_probable_margin_bb"],
+        "features.ev_certain_bb": pot_certainty["features.ev_certain_bb"],
+        "features.ev_probable_bb": pot_certainty["features.ev_probable_bb"],
     }
     missing = [name for name, value in critical.items() if value is None]
     if missing:
         raise SlimLiveBuildError(f"slim_live_critical_missing:{','.join(missing)}")
 
     return {
-        "features.hero_position": state.hero_position.position,
-        "features.pot_bb": pot_bb,
         "features.to_call_bb": to_call_bb,
         "features.effective_stack_bb": effective_stack_bb,
-        "features.can_check": _bool_feature(can_check),
-        "features.can_call": _bool_feature(can_call),
-        "features.can_raise": _bool_feature(can_raise),
         "features.players_active": players_active,
         "features.bet_size_bb": bet_size_bb,
         "features.equity_win": equity_global,
+        "features.equity_win_present": equity_present,
         "features.call_max_bb": call_max_bb,
         "features.call_margin_bb": call_margin_bb,
+        **pot_certainty,
     }
 
 
@@ -118,25 +123,59 @@ def _bet_size(state: Any, *, to_call: Optional[float]) -> Optional[float]:
     return min(values) if values else 0.0
 
 
-def _has_button(buttons: list[Any], states: set[str]) -> bool:
-    expected = {state.lower() for state in states}
-    return any(
-        bool(getattr(button, "enabled", False))
-        and str(getattr(button, "state", getattr(button, "etat", "")) or "").lower() in expected
-        for button in buttons
-    )
-
-
 def _players_active(state: Any) -> Optional[int]:
-    if state.player_count is not None:
-        return int(state.player_count)
     if state.active_opponents is not None:
         return max(1, int(state.active_opponents) + 1)
+    if state.player_count is not None:
+        return int(state.player_count)
     return None
 
 
-def _bool_feature(value: bool) -> int:
-    return 1 if value else 0
+def _players_present(state: Any, players_active: Optional[int]) -> Optional[int]:
+    if state.player_count is not None:
+        return int(state.player_count)
+    return players_active
+
+
+def _equity_win_present(
+    equity: Optional[float],
+    players_active: Optional[int],
+    players_present: Optional[int],
+) -> Optional[float]:
+    if equity is None:
+        return None
+    active_opponents = max((players_active or 1) - 1, 1)
+    present_opponents = max((players_present or players_active or 1) - 1, active_opponents)
+    ratio = present_opponents / active_opponents
+    return max(0.0, min(1.0, equity)) ** ratio
+
+
+def _pot_certainty_features(
+    *,
+    pot_bb: Optional[float],
+    to_call_bb: Optional[float],
+    players_active: Optional[int],
+    equity_win: Optional[float],
+) -> dict[str, Optional[float]]:
+    if pot_bb is None or to_call_bb is None or equity_win is None:
+        return {
+            "features.pot_certain_bb": None,
+            "features.pot_probable_bb": None,
+            "features.pot_probable_margin_bb": None,
+            "features.ev_certain_bb": None,
+            "features.ev_probable_bb": None,
+        }
+    players_after = max((players_active or 1) - 1, 0)
+    pot_certain_bb = pot_bb + max(to_call_bb, 0.0)
+    pot_probable_bb = pot_certain_bb + players_after * max(to_call_bb, 0.0)
+    equity = max(0.0, min(1.0, equity_win))
+    return {
+        "features.pot_certain_bb": pot_certain_bb,
+        "features.pot_probable_bb": pot_probable_bb,
+        "features.pot_probable_margin_bb": pot_probable_bb - max(to_call_bb, 0.0),
+        "features.ev_certain_bb": equity * pot_certain_bb - max(to_call_bb, 0.0),
+        "features.ev_probable_bb": equity * pot_probable_bb - max(to_call_bb, 0.0),
+    }
 
 
 def _amount_bb(value: Optional[float], bb: Optional[float]) -> Optional[float]:

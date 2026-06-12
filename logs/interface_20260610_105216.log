@@ -1,0 +1,57 @@
+10:52:16 INFO debut interface interval_ms=1000 game=PokerTH decision_mode=ml hero_position=BB ml_dataset=True log=logs\interface_20260610_105216.log
+10:52:39 INFO changement_mode_decision old=ml new=river_solver game=PokerTH
+10:52:41 INFO debut scan_continu interval_ms=1000
+10:52:41 INFO debut cycle_controller count=1
+10:52:41 INFO debut workflow_scan street=IDLE
+10:52:41 INFO debut scan_table
+10:52:41 DEBUG SCAN recale_zones origin_ref=(1296, 353) origin_live=(1446, 397) offset=(150, 44)
+10:52:41 DEBUG SCAN table anchor=(1928, 773, 36, 16)
+10:52:41 DEBUG SCAN test_table status=True
+10:52:41 DEBUG SCAN carte brut template_set=hand value=6 suit=diamonds score_value=0.995 score_suit=0.997 accepted_value=6 accepted_suit=diamonds
+10:52:41 DEBUG SCAN carte zone=main index=1 value=6 suit=diamonds formatted=6♦ score_value=0.995 score_suit=0.997
+10:52:41 DEBUG SCAN carte brut template_set=hand value=3 suit=hearts score_value=0.993 score_suit=0.997 accepted_value=3 accepted_suit=hearts
+10:52:41 DEBUG SCAN carte zone=main index=2 value=3 suit=hearts formatted=3♥ score_value=0.993 score_suit=0.997
+10:52:41 DEBUG SCAN carte vide template_set=board
+10:52:41 DEBUG SCAN carte zone=board index=1 status=empty
+10:52:41 DEBUG SCAN carte vide template_set=board
+10:52:41 DEBUG SCAN carte zone=board index=2 status=empty
+10:52:41 DEBUG SCAN carte vide template_set=board
+10:52:41 DEBUG SCAN carte zone=board index=3 status=empty
+10:52:41 DEBUG SCAN carte vide template_set=board
+10:52:41 DEBUG SCAN carte zone=board index=4 status=empty
+10:52:41 DEBUG SCAN carte vide template_set=board
+10:52:41 DEBUG SCAN carte zone=board index=5 status=empty
+10:52:48 DEBUG SCAN ocr_player_name raw='Flael' confidence=0.168 name=Flael
+10:52:48 DEBUG SCAN ocr_amount raw='990 Plaver' confidence=0.997 value=990.0
+10:52:48 DEBUG SCAN joueur index=1 name=Flael etat=paid fond=990.0 active=True
+10:52:48 DEBUG SCAN ocr_player_name raw='Player 2' confidence=0.695 name=Player 2
+10:52:48 DEBUG SCAN ocr_amount raw='54 980' confidence=0.999 value=4980.0
+10:52:48 DEBUG SCAN joueur index=2 name=Player 2 etat=paid fond=4980.0 active=True
+10:52:48 DEBUG SCAN ocr_player_name raw='Player 3 980' confidence=0.838 name=Player 3 980
+10:52:48 DEBUG SCAN ocr_amount raw='54 980' confidence=0.996 value=4980.0
+10:52:48 DEBUG SCAN joueur index=3 name=Player 3 980 etat=paid fond=4980.0 active=True
+10:52:48 DEBUG SCAN ocr_player_name raw='Player 4 54 980' confidence=0.986 name=Player 4 54 980
+10:52:48 DEBUG SCAN ocr_amount raw='54 980' confidence=0.997 value=4980.0
+10:52:48 DEBUG SCAN joueur index=4 name=Player 4 54 980 etat=paid fond=4980.0 active=True
+10:52:48 DEBUG SCAN ocr_player_name raw=None confidence=0.000 name=None
+10:52:48 DEBUG SCAN ocr_amount raw='' confidence=0.000 value=None
+10:52:48 DEBUG SCAN joueur index=5 name=None etat=No_start fond=None active=False
+10:52:48 DEBUG SCAN ocr_button raw='raise 440' confidence=0.840
+10:52:48 DEBUG SCAN bouton index=1 texte=raise 440 etat=relance enabled=True value=40.0
+10:52:48 DEBUG SCAN ocr_button raw='call $20' confidence=0.933
+10:52:48 DEBUG SCAN bouton index=2 texte=call $20 etat=paie enabled=True value=20.0
+10:52:49 DEBUG SCAN ocr_button raw='fold' confidence=1.000
+10:52:49 DEBUG SCAN bouton index=3 texte=fold etat=fold enabled=True value=0.0
+10:52:49 DEBUG SCAN ocr_amount raw='Total: $0 Bets: $70' confidence=0.984 value=70.0
+10:52:49 INFO fin scan_table status=ok main=2 board=0 joueurs_actifs=4/5 boutons_actifs=3/3 pot=70.0
+10:52:49 INFO fin workflow_scan status=ok street=IDLE
+10:52:49 INFO debut update_game street=IDLE pot=70.0
+10:52:49 DEBUG INIT pot amount=70.0 street=PREFLOP hand=1
+10:52:49 DEBUG CALCUL chance_win hero=['6♦', '3♥'] board=[] adversaires=4 profiles=['paid', 'paid', 'paid', 'paid'] chance_1v1=0.06636500754147812 equity_table=0.132 simulations=2000
+10:52:49 INFO CALCUL etat pot=70.0 to_call=20.0 equity_table=0.132 chance_1v1=0.06636500754147812 ev=-8.12 call_max=10.645161290322582 equity_min=0.2222222222222222 montant=10.645161290322582
+10:52:49 INFO ETAT stable hand=1 street=PREFLOP hero=['6♦', '3♥'] board=[None, None, None, None, None] pot=70.0 raw_hero=2 raw_board=0 joueurs=4/4
+10:52:49 INFO fin update_game status=ok nouvelle_partie=False hand=1
+10:52:49 INFO CAPTURE erreur_blocante path=logs\errors\blocking_20260610_105249_scan_continu.png
+10:52:49 ERROR ARRET - erreur controller contexte=Scan continu error=cannot inherit non-frozen dataclass from a frozen one screenshot=logs\errors\blocking_20260610_105249_scan_continu.png
+NoneType: None
+10:53:05 INFO fin interface status=closed log=logs\interface_20260610_105216.log

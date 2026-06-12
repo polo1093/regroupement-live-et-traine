@@ -1,22 +1,38 @@
-"""Top-level launcher for the live decision bot.
+"""Top-level launcher for the live decision bot AND the new river_solver pipeline.
 
 This file lives at the repo root so the project has a single, obvious
-entry point. It is a *thin* wrapper around ``aide_decission/launch.py``:
+entry point. It is a *thin* wrapper around :
 
-* When executed as a script (``python launch.py``) it delegates to the
-  real entry point via :mod:`runpy` so error reporting and signal
-  handling stay native.
-* When imported as a module (``from launch import App, ...``) it
-  re-exports the public API of ``aide_decission/launch.py``,
-  ``aide_decission/launch_support.py`` and
-  ``aide_decission/launcher/cli.py`` so tests and tooling can
-  ``import launch`` regardless of whether the CWD is the repo root or
-  ``aide_decission/``.
+* ``aide_decission/launch.py`` : the live decision bot (Tkinter UI).
+* ``Traine_aide_decission/experiments/run_river_solver_pipeline.py`` : the
+  new TexasSolver-driven dataset pipeline (`river_solver/`) that
+  produces 3-class (NO_INVEST / CALL / RAISE) labels with V3-compatible
+  features.
+
+The launcher dispatches based on the first CLI argument :
+
+```bash
+# Mode 1 : lancer le bot live (par défaut, ou `python launch.py live ...`)
+python launch.py
+python launch.py live --game PMU --interval 250
+
+# Mode 2 : générer un dataset solver
+python launch.py river-solver --n-spots 1000 --seed 42 `
+    --work-dir outputs/river_solver_v1
+```
+
+When imported as a module (``from launch import App, ...``) it
+re-exports the public API of ``aide_decission/launch.py``,
+``aide_decission/launch_support.py`` and
+``aide_decission/launcher/cli.py`` so tests and tooling can
+``import launch`` regardless of whether the CWD is the repo root or
+``aide_decission/``.
 
 Any cli flag accepted by the inner launcher (``--game``,
 ``--decision-mode``, ``--snapshot``, ``--list-games``, etc.) is
 forwarded as-is.
 """
+
 from __future__ import annotations
 
 import importlib.util
@@ -26,16 +42,17 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 LIVE_DIR = ROOT / "aide_decission"
+TRAIN_DIR = ROOT / "Traine_aide_decission"
 LIVE_LAUNCH = LIVE_DIR / "launch.py"
 LIVE_LAUNCH_SUPPORT = LIVE_DIR / "launch_support.py"
 LIVE_LAUNCHER_CLI = LIVE_DIR / "launcher" / "cli.py"
+RIVER_SOLVER_EXPERIMENT = (
+    TRAIN_DIR / "experiments" / "run_river_solver_pipeline.py"
+)
 
-# Make the live package importable so that ``from launcher import ...``
-# inside ``aide_decission/launch.py`` resolves to
-# ``aide_decision/launcher/`` rather than failing with
-# ``ModuleNotFoundError`` when ``runpy`` executes the script.
-if str(LIVE_DIR) not in sys.path:
-    sys.path.insert(0, str(LIVE_DIR))
+# Subcommandes connues. ``live`` est implicite (par défaut) pour rétro-
+# compatibilité avec l'ancien comportement de launch.py.
+KNOWN_SUBCOMMANDS = {"live", "river-solver", "river_solver", "solver"}
 
 
 def _load_module_from_path(module_name: str, file_path: Path) -> dict:
@@ -61,6 +78,49 @@ def _load_module_from_path(module_name: str, file_path: Path) -> dict:
     return vars(module)
 
 
+def _route_subcommand(argv: list[str]) -> str | None:
+    """Détermine le sous-mode demandé par argv[1] (live, river-solver, ...)."""
+
+    if not argv:
+        return None
+    first = argv[0].strip().lower()
+    if first in KNOWN_SUBCOMMANDS:
+        return first
+    # Sous-commande non reconnue : on bascule sur le mode live par
+    # défaut (rétro-compatibilité avec les anciens appels type
+    # `python launch.py --game PMU ...`).
+    if first.startswith("-"):
+        return None
+    return None
+
+
+def _run_river_solver(argv: list[str]) -> int:
+    """Délègue à ``run_river_solver_pipeline.main(argv)``."""
+
+    if not RIVER_SOLVER_EXPERIMENT.exists():
+        print(
+            f"ERREUR : script introuvable : {RIVER_SOLVER_EXPERIMENT}",
+            file=sys.stderr,
+        )
+        return 1
+    if str(TRAIN_DIR) not in sys.path:
+        sys.path.insert(0, str(TRAIN_DIR))
+    # On retire le sous-mode argv[0] pour passer les args au script
+    # cible.
+    forwarded_argv = list(argv[1:])
+    sys.argv = [str(RIVER_SOLVER_EXPERIMENT), *forwarded_argv]
+    runpy.run_path(str(RIVER_SOLVER_EXPERIMENT), run_name="__main__")
+    return 0
+
+
+# Make the live package importable so that ``from launcher import ...``
+# inside ``aide_decission/launch.py`` resolves to
+# ``aide_decision/launcher/`` rather than failing with
+# ``ModuleNotFoundError`` when ``runpy`` executes the script.
+if str(LIVE_DIR) not in sys.path:
+    sys.path.insert(0, str(LIVE_DIR))
+
+
 _LIVE_NS = _load_module_from_path("_aide_decission_launch", LIVE_LAUNCH)
 _SUPPORT_NS = _load_module_from_path(
     "_aide_decission_launch_support", LIVE_LAUNCH_SUPPORT
@@ -68,6 +128,16 @@ _SUPPORT_NS = _load_module_from_path(
 _CLI_NS = _load_module_from_path(
     "_aide_decission_launcher_cli", LIVE_LAUNCHER_CLI
 )
+
+
+# Charge aussi le pipeline river_solver pour permettre l'import depuis
+# la racine (par exemple : ``from launch import river_solver_pipeline``).
+try:
+    _RIVER_SOLVER_NS = _load_module_from_path(
+        "_aide_decission_river_solver_pipeline", RIVER_SOLVER_EXPERIMENT
+    )
+except (FileNotFoundError, ImportError):  # pragma: no cover
+    _RIVER_SOLVER_NS = {}
 
 
 import types
@@ -78,7 +148,7 @@ import types
 # aussi bien depuis la racine du repo que depuis ``aide_decission/``.
 # On évite les noms privés (préfixés par ``_``) pour ne pas polluer
 # l'API publique.
-for _ns in (_LIVE_NS, _SUPPORT_NS, _CLI_NS):
+for _ns in (_LIVE_NS, _SUPPORT_NS, _CLI_NS, _RIVER_SOLVER_NS):
     for _name, _value in _ns.items():
         if _name.startswith("_"):
             continue
@@ -97,7 +167,37 @@ __all__ = sorted(
 )
 
 
+def _print_help() -> None:
+    print(
+        "Usage :\n"
+        "  python launch.py [live] [options live ...]\n"
+        "      -> lance le bot live (mode par défaut).\n"
+        "\n"
+        "  python launch.py river-solver [options solver ...]\n"
+        "      -> exécute le pipeline river_solver (génération de\n"
+        "         dataset TexasSolver 3-classes, features V3).\n"
+        "\n"
+        "Pour les options live :\n"
+        "  python launch.py live --help\n"
+        "\n"
+        "Pour les options river-solver :\n"
+        "  python launch.py river-solver --help\n"
+        "\n"
+        "Exemples :\n"
+        "  python launch.py --game PMU --interval 250\n"
+        "  python launch.py river-solver --n-spots 500 --seed 42 \\\n"
+        "      --work-dir outputs/river_solver_v1\n",
+        file=sys.stderr,
+    )
+
+
 if __name__ == "__main__":
-    # Show the real entry point in help output and log lines.
+    subcmd = _route_subcommand(sys.argv[1:])
+    if subcmd in {"river-solver", "river_solver", "solver"}:
+        raise SystemExit(_run_river_solver(sys.argv[1:]))
+    if subcmd is None and sys.argv[1:] and sys.argv[1].strip().lower() in {"help", "--help", "-h"}:
+        _print_help()
+        raise SystemExit(0)
+    # Mode live (par défaut, rétro-compatible)
     sys.argv[0] = str(LIVE_LAUNCH)
     runpy.run_path(str(LIVE_LAUNCH), run_name="__main__")

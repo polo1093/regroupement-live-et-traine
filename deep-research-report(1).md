@@ -1,5 +1,41 @@
 # Faisabilité d’un dataset massif de spots river avec TexasSolver pour entraîner un modèle ML fort en No-Limit Hold’em
 
+> ## STATUS D’IMPLÉMENTATION
+>
+> Ce rapport sert maintenant de mémoire courte du chantier.
+>
+> **Terminé** :
+>
+> - `Traine_aide_decission/river_solver/` est livré : canonisation, génération
+>   de spots, runner TexasSolver/simulateur, parser, collapse 3-classes,
+>   features V3, writer JSONL/Parquet, QA, pipeline et README.
+> - Les tests du pipeline river solver sont en place, avec smoke test validé.
+> - Le pipeline V3 slim sait produire et exporter quatre modèles :
+>   `preflop`, `flop`, `turn`, `river`.
+> - Le mode live `river_solver` ne doit pas lancer TexasSolver en temps réel :
+>   il charge un bundle modèle, puis fallback explicitement sur
+>   `v3_slim_latest` tant que `river_solver_latest` n’existe pas.
+>
+> **Validé pendant la stabilisation live/notebook** :
+>
+> - [x] Corriger le crash live `cannot inherit non-frozen dataclass from a frozen one`
+>   dans `aide_decission/objet/services/river_solver_decision.py`.
+> - [x] Corriger l’appel invalide à l’engine exporté : utiliser
+>   `ExportedModelDecisionEngine(export_dir=...)`.
+> - [x] Ajouter des tests live pour l’import river solver, le fallback v3 et la
+>   propagation de `raise_amount`.
+> - [x] Valider le notebook sur les quatre modèles et garder l’analyse graphique
+>   obligatoire : métriques, importances, learning curves, matrices de confusion.
+> - [ ] Surveiller le warning de version sklearn lors du chargement de modèles
+>   entraînés/exportés avec une autre version que celle de la venv live.
+>
+> **Garde-fous toujours valides** :
+>
+> - offline only pour le solveur ;
+> - pas de label ML automatique sans QA ;
+> - tests ciblés après chaque changement ;
+> - pas de refactor massif non validé.
+
 ## Résumé exécutif
 
 Oui, il est réaliste de produire un dataset volumineux et utile d’environ 500 000 spots river avec TexasSolver **si** vous cadrez le projet comme un apprentissage **conditionnel de politique river** à partir d’un état richement observé — cartes privées, board, ranges, historique d’actions, tailles autorisées, pot, stack effectif, position et contexte de mise. En revanche, cela ne suffit pas, à lui seul, à construire un agent HUNL complet de niveau recherche : les systèmes de très haut niveau comme DeepStack et Libratus s’appuient sur de la résolution locale, du raisonnement récursif et/ou des blueprints full-game, pas sur une simple imitation supervisée d’un seul street. citeturn40search1turn39search9

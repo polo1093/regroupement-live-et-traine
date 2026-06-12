@@ -2,9 +2,10 @@
 
 Locked contract (do not edit without retraining):
 
-* 11 preflop features, 12 street features for flop/turn/river.
+* 12 preflop features, 13 street features for flop/turn/river.
 * One model per street: preflop, flop, turn, river.
-* No EV/source features and no action-history counters in the model input.
+* No position, raw pot, live action flags, EV/source features or action-history
+  counters in the model input.
 """
 from __future__ import annotations
 
@@ -18,31 +19,33 @@ STAGE_NAMES = ("preflop", "flop", "turn", "river")
 # ---- Slim feature lists (locked) ----
 
 PREFLOP_FEATURES = (
-    "features.hero_position",
-    "features.pot_bb",
     "features.to_call_bb",
     "features.effective_stack_bb",
-    "features.can_check",
-    "features.can_call",
-    "features.can_raise",
     "features.players_active",
     "features.equity_win",
+    "features.equity_win_present",
     "features.call_max_bb",
     "features.call_margin_bb",
+    "features.pot_certain_bb",
+    "features.pot_probable_bb",
+    "features.pot_probable_margin_bb",
+    "features.ev_certain_bb",
+    "features.ev_probable_bb",
 )
 
 STREET_FEATURES = (
-    "features.hero_position",
-    "features.pot_bb",
     "features.to_call_bb",
     "features.effective_stack_bb",
-    "features.can_check",
-    "features.can_call",
-    "features.can_raise",
     "features.players_active",
     "features.equity_win",
+    "features.equity_win_present",
     "features.call_max_bb",
     "features.call_margin_bb",
+    "features.pot_certain_bb",
+    "features.pot_probable_bb",
+    "features.pot_probable_margin_bb",
+    "features.ev_certain_bb",
+    "features.ev_probable_bb",
     "features.bet_size_bb",
 )
 
@@ -59,10 +62,10 @@ FEATURES_BY_STAGE = {
 }
 
 CATEGORICAL_BY_STAGE = {
-    "preflop": ("features.hero_position",),
-    "flop": ("features.hero_position",),
-    "turn": ("features.hero_position",),
-    "river": ("features.hero_position",),
+    "preflop": (),
+    "flop": (),
+    "turn": (),
+    "river": (),
 }
 
 # ---- Forbidden columns in X (no leakage / no raw text / no labels) ----
@@ -91,9 +94,15 @@ FORBIDDEN_MODEL_COLUMNS = frozenset(
 
 CRITICAL_FEATURES = (
     "features.equity_win",
+    "features.equity_win_present",
     "features.call_max_bb",
     "features.call_margin_bb",
     "features.players_active",
+    "features.pot_certain_bb",
+    "features.pot_probable_bb",
+    "features.pot_probable_margin_bb",
+    "features.ev_certain_bb",
+    "features.ev_probable_bb",
 )
 
 # ---- Schemas ----
@@ -109,10 +118,17 @@ RICH_FORBIDDEN_FEATURES = frozenset(
         "features.equity_required",
         "features.equity_gap",
         "features.ev",
+        "features.hero_position",
+        "features.pot_bb",
         "features.has_check",
         "features.has_fold",
         "features.has_call",
         "features.has_raise",
+        "features.can_check",
+        "features.can_call",
+        "features.can_raise",
+        "features.actors_before_hero",
+        "features.actors_after_hero",
         "features.num_players",
         "features.num_bets",
         "features.prior_bet_raise_count",
@@ -132,18 +148,19 @@ RICH_FORBIDDEN_FEATURES = frozenset(
 # ---- Feature formulas (documentation + smoke test) ----
 
 FEATURE_FORMULAS = {
-    "features.hero_position": "Normalized hero position: SB, BB, BTN, CO, MP, UTG, else UNKNOWN.",
-    "features.pot_bb": "pot / big_blind.",
     "features.to_call_bb": "to_call / big_blind; 0.0 for a free check.",
     "features.effective_stack_bb": "min(hero_stack, max(active_villain_stacks)) / big_blind; folded players excluded.",
-    "features.can_check": "1 if check is currently legal, else 0.",
-    "features.can_call": "1 if call is legal and to_call_bb > 0, else 0.",
-    "features.can_raise": "1 if bet/raise/all-in is legal, else 0.",
     "features.players_active": "current players still in pot, hero included; live = active_opponents + 1 (fallback).",
     "features.bet_size_bb": "Available/source bet size in BB. In live, derived from to_call or raise buttons; in train, mapped from features.bet_size_bb.",
     "features.equity_win": "Single model equity against active opponents; in live = DecisionInput.equity.",
+    "features.equity_win_present": "Conservative win equity adjusted to players present at the table; equals equity_win when present count is unknown or equal to active count.",
     "features.call_max_bb": "Maximum profitable call in big blinds. In live = call_max / big_blind.",
     "features.call_margin_bb": "call_max_bb - to_call_bb.",
+    "features.pot_certain_bb": "Guaranteed pot in BB if hero continues now: current pot_bb + to_call_bb.",
+    "features.pot_probable_bb": "Probable pot in BB if hero continues and remaining active players match the same minimum contribution; actors are internal only, not model inputs.",
+    "features.pot_probable_margin_bb": "pot_probable_bb - to_call_bb; probable reward remaining after the amount hero must add.",
+    "features.ev_certain_bb": "Net equity value in BB on the guaranteed pot: equity_win * pot_certain_bb - to_call_bb.",
+    "features.ev_probable_bb": "Net equity value in BB on the probable pot: equity_win * pot_probable_bb - to_call_bb.",
 }
 
 

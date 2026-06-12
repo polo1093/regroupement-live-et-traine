@@ -1,0 +1,2 @@
+09:47:33 INFO debut interface interval_ms=1000 game=PokerTH decision_mode=ml hero_position=BB ml_dataset=True log=logs\interface_20260610_094733.log
+09:47:39 INFO fin interface status=closed log=logs\interface_20260610_094733.log

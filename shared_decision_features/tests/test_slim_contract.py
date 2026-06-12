@@ -41,14 +41,14 @@ from shared_decision_features import (
 # ---- contract shape ----
 
 
-def test_preflop_features_count_is_14() -> None:
-    assert len(PREFLOP_FEATURES) == 11
+def test_preflop_features_count_is_12() -> None:
+    assert len(PREFLOP_FEATURES) == 12
 
 
-def test_street_features_count_is_12() -> None:
-    assert len(FLOP_FEATURES) == 12
-    assert len(TURN_FEATURES) == 12
-    assert len(RIVER_FEATURES) == 12
+def test_street_features_count_is_13() -> None:
+    assert len(FLOP_FEATURES) == 13
+    assert len(TURN_FEATURES) == 13
+    assert len(RIVER_FEATURES) == 13
 
 
 def test_street_features_extend_preflop_with_bet_size_only() -> None:
@@ -72,6 +72,22 @@ def test_critical_features_are_in_all_stage_contracts() -> None:
             assert feature in features, (stage, feature)
     assert "features.source_ev_bb" not in set().union(*FEATURES_BY_STAGE.values())
     assert "features.call_margin_bb" in PREFLOP_FEATURES
+
+
+def test_live_logic_and_position_features_are_not_model_inputs() -> None:
+    model_features = set().union(*FEATURES_BY_STAGE.values())
+    assert "features.hero_position" not in model_features
+    assert "features.pot_bb" not in model_features
+    assert "features.actors_before_hero" not in model_features
+    assert "features.actors_after_hero" not in model_features
+    assert "features.can_check" not in model_features
+    assert "features.can_call" not in model_features
+    assert "features.can_raise" not in model_features
+    assert "features.pot_certain_bb" in model_features
+    assert "features.pot_probable_bb" in model_features
+    assert "features.pot_probable_margin_bb" in model_features
+    assert "features.ev_certain_bb" in model_features
+    assert "features.ev_probable_bb" in model_features
 
 
 def test_no_rich_column_in_slim_lists() -> None:
@@ -212,6 +228,8 @@ def test_build_slim_frame_from_rich_dataset_keeps_only_slim_columns() -> None:
             "features.has_call": [1.0],
             "features.has_raise": [1.0],
             "features.num_players": [3.0],
+            "features.player_start": [5.0],
+            "features.actors_after_hero": [2.0],
             "features.prior_fold_count": [1.0],
             "features.action_count": [2.0],
             "features.prior_check_count": [0.0],
@@ -235,15 +253,26 @@ def test_build_slim_frame_from_rich_dataset_keeps_only_slim_columns() -> None:
     assert "features.equity_gap" not in slim_columns
     assert "features.has_fold" not in slim_columns
     assert "features.num_bets" not in slim_columns
+    assert "features.hero_position" not in slim_columns
+    assert "features.pot_bb" not in slim_columns
+    assert "features.can_check" not in slim_columns
+    assert "features.can_call" not in slim_columns
+    assert "features.can_raise" not in slim_columns
+    assert "features.actors_before_hero" not in slim_columns
+    assert "features.actors_after_hero" not in slim_columns
     # slim keeps the slim columns (subset of preflop is enough for the assertion)
     for feature in PREFLOP_FEATURES:
         assert feature in slim_columns, feature
     # equity_win is populated from the rich source; EV is intentionally absent.
     assert slim.loc[0, "features.equity_win"] == 0.55
+    assert round(float(slim.loc[0, "features.equity_win_present"]), 6) == round(0.55 ** 2, 6)
     assert "features.source_ev_bb" not in slim_columns
     assert slim.loc[0, "features.call_margin_bb"] == 1.0
-    assert slim.loc[0, "features.can_check"] == 1.0
-    assert slim.loc[0, "features.can_call"] == 1.0
+    assert slim.loc[0, "features.pot_certain_bb"] == 4.0
+    assert slim.loc[0, "features.pot_probable_bb"] == 6.0
+    assert slim.loc[0, "features.pot_probable_margin_bb"] == 5.0
+    assert slim.loc[0, "features.ev_certain_bb"] == pytest.approx(1.2)
+    assert slim.loc[0, "features.ev_probable_bb"] == pytest.approx(2.3)
 
 
 # ---- live builder ----
@@ -293,7 +322,7 @@ def test_build_slim_features_from_decision_input_maps_equity_win() -> None:
 def test_build_slim_features_from_decision_input_computes_players_active() -> None:
     state = _decision_input(player_count=5, active_opponents=3)
     features = build_slim_features_from_decision_input(state)
-    assert features["features.players_active"] == 5
+    assert features["features.players_active"] == 4
 
 
 def test_build_slim_features_from_decision_input_computes_call_max_bb() -> None:
@@ -306,6 +335,24 @@ def test_build_slim_features_from_decision_input_computes_call_margin_bb() -> No
     state = _decision_input(call_max=60.0, to_call=20.0, big_blind=20.0)
     features = build_slim_features_from_decision_input(state)
     assert features["features.call_margin_bb"] == 2.0
+
+
+def test_build_slim_features_from_decision_input_computes_pot_certainty_features() -> None:
+    state = _decision_input(pot=200.0, to_call=20.0, big_blind=20.0, active_opponents=2, player_count=4)
+    features = build_slim_features_from_decision_input(state)
+    assert features["features.players_active"] == 3
+    assert features["features.pot_certain_bb"] == 11.0
+    assert features["features.pot_probable_bb"] == 13.0
+    assert features["features.pot_probable_margin_bb"] == 12.0
+    assert features["features.ev_certain_bb"] == pytest.approx(6.04)
+    assert features["features.ev_probable_bb"] == pytest.approx(7.32)
+
+
+def test_build_slim_features_from_decision_input_computes_present_equity() -> None:
+    state = _decision_input(equity=0.64, active_opponents=1, player_count=3)
+    features = build_slim_features_from_decision_input(state)
+    assert features["features.equity_win"] == 0.64
+    assert features["features.equity_win_present"] == pytest.approx(0.64 ** 2)
 
 
 def test_build_slim_features_from_decision_input_raises_on_missing_equity() -> None:

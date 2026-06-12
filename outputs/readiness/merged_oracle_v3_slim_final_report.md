@@ -4,10 +4,10 @@
 
 ```json
 {
-  "flop": 12,
-  "preflop": 11,
-  "river": 12,
-  "turn": 12
+  "flop": 13,
+  "preflop": 12,
+  "river": 13,
+  "turn": 13
 }
 ```
 
@@ -16,58 +16,62 @@
 ```json
 {
   "flop": [
-    "features.hero_position",
-    "features.pot_bb",
     "features.to_call_bb",
     "features.effective_stack_bb",
-    "features.can_check",
-    "features.can_call",
-    "features.can_raise",
     "features.players_active",
     "features.equity_win",
+    "features.equity_win_present",
     "features.call_max_bb",
     "features.call_margin_bb",
+    "features.pot_certain_bb",
+    "features.pot_probable_bb",
+    "features.pot_probable_margin_bb",
+    "features.ev_certain_bb",
+    "features.ev_probable_bb",
     "features.bet_size_bb"
   ],
   "preflop": [
-    "features.hero_position",
-    "features.pot_bb",
     "features.to_call_bb",
     "features.effective_stack_bb",
-    "features.can_check",
-    "features.can_call",
-    "features.can_raise",
     "features.players_active",
     "features.equity_win",
-    "features.call_max_bb",
-    "features.call_margin_bb"
-  ],
-  "river": [
-    "features.hero_position",
-    "features.pot_bb",
-    "features.to_call_bb",
-    "features.effective_stack_bb",
-    "features.can_check",
-    "features.can_call",
-    "features.can_raise",
-    "features.players_active",
-    "features.equity_win",
+    "features.equity_win_present",
     "features.call_max_bb",
     "features.call_margin_bb",
+    "features.pot_certain_bb",
+    "features.pot_probable_bb",
+    "features.pot_probable_margin_bb",
+    "features.ev_certain_bb",
+    "features.ev_probable_bb"
+  ],
+  "river": [
+    "features.to_call_bb",
+    "features.effective_stack_bb",
+    "features.players_active",
+    "features.equity_win",
+    "features.equity_win_present",
+    "features.call_max_bb",
+    "features.call_margin_bb",
+    "features.pot_certain_bb",
+    "features.pot_probable_bb",
+    "features.pot_probable_margin_bb",
+    "features.ev_certain_bb",
+    "features.ev_probable_bb",
     "features.bet_size_bb"
   ],
   "turn": [
-    "features.hero_position",
-    "features.pot_bb",
     "features.to_call_bb",
     "features.effective_stack_bb",
-    "features.can_check",
-    "features.can_call",
-    "features.can_raise",
     "features.players_active",
     "features.equity_win",
+    "features.equity_win_present",
     "features.call_max_bb",
     "features.call_margin_bb",
+    "features.pot_certain_bb",
+    "features.pot_probable_bb",
+    "features.pot_probable_margin_bb",
+    "features.ev_certain_bb",
+    "features.ev_probable_bb",
     "features.bet_size_bb"
   ]
 }
@@ -77,27 +81,28 @@
 
 | model | rows_train | rows_validation | rows_test | selected_model | accuracy | macro_f1 | recall_NO_INVEST | recall_CALL | recall_RAISE |
 | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: | ---: | ---: |
-| preflop | 53070 | 7581 | 15163 | lightgbm | 0.868364 | 0.86304 | 0.809402 | 0.916492 | 0.909707 |
-| flop | 7896 | 1174 | 2189 | extra_trees | 0.835998 | 0.845369 | 0.781938 | 0.914683 | 0.941176 |
-| turn | 20443 | 2885 | 5881 | random_forest | 0.877402 | 0.87946 | 0.879974 | 0.861993 | 0.897877 |
-| river | 62893 | 8974 | 17996 | lightgbm | 0.840854 | 0.856665 | 0.800188 | 0.827687 | 0.978313 |
+| preflop | 53070 | 7581 | 15163 | lightgbm | 0.862494 | 0.856544 | 0.805183 | 0.910552 | 0.900071 |
+| flop | 7896 | 1174 | 2189 | lightgbm | 0.83143 | 0.841547 | 0.770191 | 0.918651 | 0.95356 |
+| turn | 20443 | 2885 | 5881 | lightgbm | 0.864819 | 0.868126 | 0.859426 | 0.847755 | 0.913043 |
+| river | 62893 | 8974 | 17996 | lightgbm | 0.838464 | 0.854537 | 0.80604 | 0.808498 | 0.978012 |
 
 ## Feature Formulas
 
 | feature | calcul |
 | --- | --- |
-| `features.hero_position` | Normalized hero position: SB, BB, BTN, CO, MP, UTG, else UNKNOWN. |
-| `features.pot_bb` | pot / big_blind. |
 | `features.to_call_bb` | to_call / big_blind; 0.0 for a free check. |
 | `features.effective_stack_bb` | min(hero_stack, max(active_villain_stacks)) / big_blind; folded players excluded. |
-| `features.can_check` | 1 if check is currently legal, else 0. |
-| `features.can_call` | 1 if call is legal and to_call_bb > 0, else 0. |
-| `features.can_raise` | 1 if bet/raise/all-in is legal, else 0. |
 | `features.players_active` | current players still in pot, hero included; live = active_opponents + 1 (fallback). |
 | `features.bet_size_bb` | Available/source bet size in BB. In live, derived from to_call or raise buttons; in train, mapped from features.bet_size_bb. |
 | `features.equity_win` | Single model equity against active opponents; in live = DecisionInput.equity. |
+| `features.equity_win_present` | Conservative win equity adjusted to players present at the table; equals equity_win when present count is unknown or equal to active count. |
 | `features.call_max_bb` | Maximum profitable call in big blinds. In live = call_max / big_blind. |
 | `features.call_margin_bb` | call_max_bb - to_call_bb. |
+| `features.pot_certain_bb` | Guaranteed pot in BB if hero continues now: current pot_bb + to_call_bb. |
+| `features.pot_probable_bb` | Probable pot in BB if hero continues and remaining active players match the same minimum contribution; actors are internal only, not model inputs. |
+| `features.pot_probable_margin_bb` | pot_probable_bb - to_call_bb; probable reward remaining after the amount hero must add. |
+| `features.ev_certain_bb` | Net equity value in BB on the guaranteed pot: equity_win * pot_certain_bb - to_call_bb. |
+| `features.ev_probable_bb` | Net equity value in BB on the probable pot: equity_win * pot_probable_bb - to_call_bb. |
 
 ## Removed Redundant Features
 

@@ -1,132 +1,138 @@
 {
-  "accuracy": 0.835998,
+  "accuracy": 0.83143,
   "classification_report": {
     "CALL": {
-      "f1-score": 0.7300079176563737,
-      "precision": 0.6073781291172595,
-      "recall": 0.9146825396825397,
+      "f1-score": 0.7228727556596409,
+      "precision": 0.5958815958815958,
+      "recall": 0.9186507936507936,
       "support": 504.0
     },
     "NO_INVEST": {
-      "f1-score": 0.8619991906110887,
-      "precision": 0.9603246167718665,
-      "recall": 0.7819383259911894,
+      "f1-score": 0.8584288052373159,
+      "precision": 0.9695009242144177,
+      "recall": 0.7701908957415565,
       "support": 1362.0
     },
     "RAISE": {
-      "f1-score": 0.9440993788819876,
-      "precision": 0.9470404984423676,
-      "recall": 0.9411764705882353,
+      "f1-score": 0.9433384379785605,
+      "precision": 0.9333333333333333,
+      "recall": 0.9535603715170279,
       "support": 323.0
     },
-    "accuracy": 0.8359981726815897,
+    "accuracy": 0.8314298766560073,
     "macro avg": {
-      "f1-score": 0.8453688290498166,
-      "precision": 0.838247748110498,
-      "recall": 0.879265778753988,
+      "f1-score": 0.841546666291839,
+      "precision": 0.8329052844764488,
+      "recall": 0.8808006869697927,
       "support": 2189.0
     },
     "weighted avg": {
-      "f1-score": 0.8437236123755127,
-      "precision": 0.8771013184628897,
-      "recall": 0.8359981726815897,
+      "f1-score": 0.839747015556308,
+      "precision": 0.8781412744499899,
+      "recall": 0.8314298766560073,
       "support": 2189.0
     }
   },
   "confusion_matrix": {
     "CALL": {
-      "CALL": 461,
-      "NO_INVEST": 37,
-      "RAISE": 6
+      "CALL": 463,
+      "NO_INVEST": 30,
+      "RAISE": 11
     },
     "NO_INVEST": {
-      "CALL": 286,
-      "NO_INVEST": 1065,
+      "CALL": 302,
+      "NO_INVEST": 1049,
       "RAISE": 11
     },
     "RAISE": {
       "CALL": 12,
-      "NO_INVEST": 7,
-      "RAISE": 304
+      "NO_INVEST": 3,
+      "RAISE": 308
     }
   },
-  "feature_count": 12,
+  "feature_count": 13,
   "feature_formulas": {
     "features.bet_size_bb": "Available/source bet size in BB. In live, derived from to_call or raise buttons; in train, mapped from features.bet_size_bb.",
     "features.call_margin_bb": "call_max_bb - to_call_bb.",
     "features.call_max_bb": "Maximum profitable call in big blinds. In live = call_max / big_blind.",
-    "features.can_call": "1 if call is legal and to_call_bb > 0, else 0.",
-    "features.can_check": "1 if check is currently legal, else 0.",
-    "features.can_raise": "1 if bet/raise/all-in is legal, else 0.",
     "features.effective_stack_bb": "min(hero_stack, max(active_villain_stacks)) / big_blind; folded players excluded.",
     "features.equity_win": "Single model equity against active opponents; in live = DecisionInput.equity.",
-    "features.hero_position": "Normalized hero position: SB, BB, BTN, CO, MP, UTG, else UNKNOWN.",
+    "features.equity_win_present": "Conservative win equity adjusted to players present at the table; equals equity_win when present count is unknown or equal to active count.",
+    "features.ev_certain_bb": "Net equity value in BB on the guaranteed pot: equity_win * pot_certain_bb - to_call_bb.",
+    "features.ev_probable_bb": "Net equity value in BB on the probable pot: equity_win * pot_probable_bb - to_call_bb.",
     "features.players_active": "current players still in pot, hero included; live = active_opponents + 1 (fallback).",
-    "features.pot_bb": "pot / big_blind.",
+    "features.pot_certain_bb": "Guaranteed pot in BB if hero continues now: current pot_bb + to_call_bb.",
+    "features.pot_probable_bb": "Probable pot in BB if hero continues and remaining active players match the same minimum contribution; actors are internal only, not model inputs.",
+    "features.pot_probable_margin_bb": "pot_probable_bb - to_call_bb; probable reward remaining after the amount hero must add.",
     "features.to_call_bb": "to_call / big_blind; 0.0 for a free check."
   },
   "feature_importance_top_20": [
     {
-      "feature": "features.bet_size_bb",
-      "importance": 0.41433777
-    },
-    {
-      "feature": "features.can_check",
-      "importance": 0.23221402
-    },
-    {
-      "feature": "features.pot_bb",
-      "importance": 0.11780149
-    },
-    {
-      "feature": "features.hero_position",
-      "importance": 0.0648413
-    },
-    {
-      "feature": "features.effective_stack_bb",
-      "importance": 0.06155659
+      "feature": "features.pot_certain_bb",
+      "importance": 0.22549797
     },
     {
       "feature": "features.equity_win",
-      "importance": 0.03612297
+      "importance": 0.16514296
     },
     {
-      "feature": "features.call_margin_bb",
-      "importance": 0.02669823
+      "feature": "features.effective_stack_bb",
+      "importance": 0.1521011
     },
     {
       "feature": "features.call_max_bb",
-      "importance": 0.0257547
+      "importance": 0.09595314
     },
     {
-      "feature": "features.can_raise",
-      "importance": 0.0059302
+      "feature": "features.ev_certain_bb",
+      "importance": 0.09396288
     },
     {
-      "feature": "features.to_call_bb",
-      "importance": 0.00577024
+      "feature": "features.ev_probable_bb",
+      "importance": 0.07537095
     },
     {
-      "feature": "features.can_call",
-      "importance": 0.00514467
+      "feature": "features.call_margin_bb",
+      "importance": 0.0688662
+    },
+    {
+      "feature": "features.pot_probable_bb",
+      "importance": 0.06415754
+    },
+    {
+      "feature": "features.equity_win_present",
+      "importance": 0.0227828
+    },
+    {
+      "feature": "features.pot_probable_margin_bb",
+      "importance": 0.01457905
+    },
+    {
+      "feature": "features.bet_size_bb",
+      "importance": 0.01242698
     },
     {
       "feature": "features.players_active",
-      "importance": 0.00382781
+      "importance": 0.00482193
+    },
+    {
+      "feature": "features.to_call_bb",
+      "importance": 0.0043365
     }
   ],
   "feature_names": [
-    "features.hero_position",
-    "features.pot_bb",
     "features.to_call_bb",
     "features.effective_stack_bb",
-    "features.can_check",
-    "features.can_call",
-    "features.can_raise",
     "features.players_active",
     "features.equity_win",
+    "features.equity_win_present",
     "features.call_max_bb",
     "features.call_margin_bb",
+    "features.pot_certain_bb",
+    "features.pot_probable_bb",
+    "features.pot_probable_margin_bb",
+    "features.ev_certain_bb",
+    "features.ev_probable_bb",
     "features.bet_size_bb"
   ],
   "label_distribution": {
@@ -137,76 +143,76 @@
   "leakage_columns_used_by_model": [],
   "learning_curve": [
     {
-      "model": "extra_trees",
+      "model": "lightgbm",
       "rows_train": 790,
       "train_fraction": 0.1,
-      "train_macro_f1": 0.922994,
-      "validation_accuracy": 0.798978,
-      "validation_macro_f1": 0.81509
+      "train_macro_f1": 0.907604,
+      "validation_accuracy": 0.793015,
+      "validation_macro_f1": 0.809911
     },
     {
-      "model": "extra_trees",
+      "model": "lightgbm",
       "rows_train": 1974,
       "train_fraction": 0.25,
-      "train_macro_f1": 0.905982,
-      "validation_accuracy": 0.813458,
-      "validation_macro_f1": 0.830159
+      "train_macro_f1": 0.900808,
+      "validation_accuracy": 0.817717,
+      "validation_macro_f1": 0.837527
     },
     {
-      "model": "extra_trees",
+      "model": "lightgbm",
       "rows_train": 3948,
       "train_fraction": 0.5,
-      "train_macro_f1": 0.901515,
-      "validation_accuracy": 0.819421,
-      "validation_macro_f1": 0.835399
+      "train_macro_f1": 0.895943,
+      "validation_accuracy": 0.816865,
+      "validation_macro_f1": 0.833957
     },
     {
-      "model": "extra_trees",
+      "model": "lightgbm",
       "rows_train": 5922,
       "train_fraction": 0.75,
-      "train_macro_f1": 0.891279,
-      "validation_accuracy": 0.818569,
-      "validation_macro_f1": 0.835946
+      "train_macro_f1": 0.887727,
+      "validation_accuracy": 0.810903,
+      "validation_macro_f1": 0.829145
     },
     {
-      "model": "extra_trees",
+      "model": "lightgbm",
       "rows_train": 7896,
       "train_fraction": 1.0,
-      "train_macro_f1": 0.890275,
-      "validation_accuracy": 0.822828,
-      "validation_macro_f1": 0.840473
+      "train_macro_f1": 0.884221,
+      "validation_accuracy": 0.816014,
+      "validation_macro_f1": 0.837033
     }
   ],
-  "macro_f1": 0.845369,
-  "model_path": "c:\\Users\\polo\\Pictures\\Cours Info\\Programme\\regroupement live et traine\\outputs\\readiness\\merged_oracle_flop_model_v3_slim\\model.joblib",
+  "macro_f1": 0.841547,
+  "model_path": "outputs\\readiness\\merged_oracle_flop_model_v3_slim\\model.joblib",
   "performance_by_source_dataset": {
     "PokerBench": {
-      "accuracy": 0.590164,
-      "macro_f1": 0.539963,
+      "accuracy": 0.614754,
+      "macro_f1": 0.587207,
       "rows": 122
     },
     "jevonmao/gtow-llama-sft-v3": {
-      "accuracy": 0.844444,
-      "macro_f1": 0.858832,
+      "accuracy": 0.84127,
+      "macro_f1": 0.856875,
       "rows": 1890
     },
     "jevonmao/poker-gto-100k": {
-      "accuracy": 0.915254,
-      "macro_f1": 0.934061,
+      "accuracy": 0.875706,
+      "macro_f1": 0.904359,
       "rows": 177
     }
   },
-  "precision_CALL": 0.607378,
-  "precision_NO_INVEST": 0.960325,
-  "precision_RAISE": 0.94704,
-  "recall_CALL": 0.914683,
-  "recall_NO_INVEST": 0.781938,
-  "recall_RAISE": 0.941176,
+  "precision_CALL": 0.595882,
+  "precision_NO_INVEST": 0.969501,
+  "precision_RAISE": 0.933333,
+  "recall_CALL": 0.918651,
+  "recall_NO_INVEST": 0.770191,
+  "recall_RAISE": 0.95356,
   "rows_test": 2189,
   "rows_train": 7896,
   "rows_validation": 1174,
   "schema": "v3_slim_stage_model",
-  "selected_model": "extra_trees",
+  "selected_model": "lightgbm",
   "skipped_model_candidates": {},
   "source_distribution_test": {
     "PokerBench": 122,
@@ -217,20 +223,20 @@
   "status": "ok",
   "validation_model_comparison": {
     "extra_trees": {
-      "accuracy": 0.822828,
-      "macro_f1": 0.840473,
-      "weighted_f1": 0.82907
+      "accuracy": 0.818569,
+      "macro_f1": 0.836689,
+      "weighted_f1": 0.824896
     },
     "lightgbm": {
-      "accuracy": 0.818569,
-      "macro_f1": 0.838926,
-      "weighted_f1": 0.825183
+      "accuracy": 0.816014,
+      "macro_f1": 0.837033,
+      "weighted_f1": 0.822895
     },
     "random_forest": {
       "accuracy": 0.806644,
-      "macro_f1": 0.83135,
-      "weighted_f1": 0.814175
+      "macro_f1": 0.828898,
+      "weighted_f1": 0.814591
     }
   },
-  "weighted_f1": 0.843724
+  "weighted_f1": 0.839747
 }

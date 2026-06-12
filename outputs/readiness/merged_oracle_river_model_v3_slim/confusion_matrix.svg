@@ -2,23 +2,23 @@
 <text x="20" y="30" font-size="18" font-family="Arial">Confusion matrix</text>
 <text x="123" y="121.0" text-anchor="end" font-size="10" font-family="Arial">true NO_INVEST</text>
 <rect x="135" y="76" width="82" height="82" fill="#5983cd" stroke="#ffffff"/>
-<text x="176.0" y="121.0" text-anchor="middle" font-size="11" font-family="Arial">7657</text>
-<rect x="217" y="76" width="82" height="82" fill="#cbdaef" stroke="#ffffff"/>
-<text x="258.0" y="121.0" text-anchor="middle" font-size="11" font-family="Arial">1801</text>
-<rect x="299" y="76" width="82" height="82" fill="#ecf4f9" stroke="#ffffff"/>
-<text x="340.0" y="121.0" text-anchor="middle" font-size="11" font-family="Arial">111</text>
+<text x="176.0" y="121.0" text-anchor="middle" font-size="11" font-family="Arial">7713</text>
+<rect x="217" y="76" width="82" height="82" fill="#ccdbef" stroke="#ffffff"/>
+<text x="258.0" y="121.0" text-anchor="middle" font-size="11" font-family="Arial">1770</text>
+<rect x="299" y="76" width="82" height="82" fill="#edf4f9" stroke="#ffffff"/>
+<text x="340.0" y="121.0" text-anchor="middle" font-size="11" font-family="Arial">86</text>
 <text x="123" y="203.0" text-anchor="end" font-size="10" font-family="Arial">true CALL</text>
-<rect x="135" y="158" width="82" height="82" fill="#dee9f5" stroke="#ffffff"/>
-<text x="176.0" y="203.0" text-anchor="middle" font-size="11" font-family="Arial">843</text>
-<rect x="217" y="158" width="82" height="82" fill="#9cb6e1" stroke="#ffffff"/>
-<text x="258.0" y="203.0" text-anchor="middle" font-size="11" font-family="Arial">4227</text>
+<rect x="135" y="158" width="82" height="82" fill="#dce7f4" stroke="#ffffff"/>
+<text x="176.0" y="203.0" text-anchor="middle" font-size="11" font-family="Arial">943</text>
+<rect x="217" y="158" width="82" height="82" fill="#9eb8e1" stroke="#ffffff"/>
+<text x="258.0" y="203.0" text-anchor="middle" font-size="11" font-family="Arial">4129</text>
 <rect x="299" y="158" width="82" height="82" fill="#eef5f9" stroke="#ffffff"/>
-<text x="340.0" y="203.0" text-anchor="middle" font-size="11" font-family="Arial">37</text>
+<text x="340.0" y="203.0" text-anchor="middle" font-size="11" font-family="Arial">35</text>
 <text x="123" y="285.0" text-anchor="end" font-size="10" font-family="Arial">true RAISE</text>
 <rect x="135" y="240" width="82" height="82" fill="#eef5f9" stroke="#ffffff"/>
-<text x="176.0" y="285.0" text-anchor="middle" font-size="11" font-family="Arial">42</text>
+<text x="176.0" y="285.0" text-anchor="middle" font-size="11" font-family="Arial">39</text>
 <rect x="217" y="240" width="82" height="82" fill="#eef5f9" stroke="#ffffff"/>
-<text x="258.0" y="285.0" text-anchor="middle" font-size="11" font-family="Arial">30</text>
-<rect x="299" y="240" width="82" height="82" fill="#afc5e6" stroke="#ffffff"/>
-<text x="340.0" y="285.0" text-anchor="middle" font-size="11" font-family="Arial">3248</text>
+<text x="258.0" y="285.0" text-anchor="middle" font-size="11" font-family="Arial">34</text>
+<rect x="299" y="240" width="82" height="82" fill="#afc5e7" stroke="#ffffff"/>
+<text x="340.0" y="285.0" text-anchor="middle" font-size="11" font-family="Arial">3247</text>
 </svg>

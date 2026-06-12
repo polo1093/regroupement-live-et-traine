@@ -1,0 +1,125 @@
+{
+  "row_count": 3,
+  "columns": [
+    "dataset_version",
+    "spot_id",
+    "spot_run_id",
+    "solver_name",
+    "solver_status",
+    "solver_error",
+    "solver_duration_ms",
+    "solver_log_meta",
+    "json_dump_bytes",
+    "spot.street",
+    "spot.branch_type",
+    "spot.format",
+    "spot.pot",
+    "spot.to_call",
+    "spot.effective_stack",
+    "spot.facing_bet_flag",
+    "spot.position_to_act",
+    "spot.board_canon",
+    "spot.hero_hand_canon",
+    "spot.node_path",
+    "spot.spot_id",
+    "features.equity_global",
+    "features.equity_1v1",
+    "features.equity_required",
+    "features.equity_gap",
+    "features.ev",
+    "features.call_max_bb",
+    "features.bet_size_bb",
+    "features.pot_bb",
+    "features.to_call_bb",
+    "features.stack_to_pot_ratio",
+    "features.to_call_pot_ratio",
+    "features.effective_stack_bb",
+    "features.hero_pairs_mass",
+    "features.hero_suited_mass",
+    "features.hero_offsuit_mass",
+    "features.hero_range_mass",
+    "features.villain_pairs_mass",
+    "features.villain_suited_mass",
+    "features.villain_offsuit_mass",
+    "features.villain_range_mass",
+    "features.range_advantage_pairs",
+    "features.board_is_paired",
+    "features.board_is_monotone",
+    "features.board_is_two_tone",
+    "features.board_is_rainbow",
+    "features.board_max_suit_count",
+    "features.board_straight_draws",
+    "features.board_high_card_rank",
+    "features.board_card_count",
+    "features.position_to_act",
+    "features.branch_type",
+    "features.facing_bet_flag",
+    "features.street",
+    "labels.freq_no_invest",
+    "labels.freq_call",
+    "labels.freq_raise",
+    "labels.hard_label_3class",
+    "labels.raise_mix_by_size",
+    "labels.ev_raise_conditional",
+    "labels.ev_raise_mass",
+    "labels.raise_best_size",
+    "_run",
+    "qa.status",
+    "qa.errors",
+    "qa.warnings"
+  ],
+  "branch_counts": {
+    "3bet": 3
+  },
+  "position_counts": {
+    "OOP": 3
+  },
+  "label_counts": {
+    "RAISE": 3
+  },
+  "qa_ok": 3,
+  "qa_failed": 0,
+  "qa_warning": 0,
+  "extra": {
+    "config": {
+      "n_spots": 3,
+      "seed": 42,
+      "work_dir": "outputs/launch_final_test",
+      "branch_mix": null,
+      "regimes": [
+        "library",
+        "perturbed",
+        "stress"
+      ],
+      "board_count": 5,
+      "solver_binary": null,
+      "max_workers": 1,
+      "keep_raw": true,
+      "write_parquet": false,
+      "audit_sample_pct": 0.05,
+      "audit_sample_max": 25
+    },
+    "stages": {
+      "generation": {
+        "status": "ok",
+        "n_spots": 3
+      },
+      "canonization": {
+        "status": "ok",
+        "accepted": 3,
+        "errors": 0,
+        "duplicates": 0
+      },
+      "features": {
+        "status": "ok",
+        "count": 3
+      },
+      "solver": {
+        "status": "ok",
+        "total_runs": 3,
+        "ok": 3,
+        "failed": 0
+      }
+    }
+  }
+}
