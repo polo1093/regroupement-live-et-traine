@@ -1,0 +1,66 @@
+# Root .gitignore — fusion de aide_decission/.gitignore + Traine_aide_decission/.gitignore
+
+# Python bytecode and cache directories
+__pycache__/
+*.pyc
+*.pyo
+*.py[cod]
+*$py.class
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Editor / IDE configuration
+.vscode/
+.idea/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python caches and test artifacts
+.pytest_cache/
+.mypy_cache/
+.coverage
+.cache/
+build/
+dist/
+
+# Media files that are too large for the repository
+*.avi
+*.mp4
+*.mov
+*.mkv
+*.webm
+
+# Logs (présent à la racine et dans les sous-dossiers)
+/logs/
+*.log
+*.log.*
+
+# Outputs / artefacts générés (modèles, datasets, diagnostics)
+/outputs/
+
+# =============================================================================
+# Spécifique à aide_decission/
+# =============================================================================
+# Ces dossiers existent uniquement dans aide_decission/
+/aide_decission/screen/erreur/
+/aide_decission/poker/
+/aide_decission/Poker-master/
+/aide_decission/projet import/
+/aide_decission/projet importer/
+/aide_decission/config/_interface_state.json
+
+# Screen directory: garder TestUnitaire et launch, ignorer le reste
+/aide_decission/Screen/*
+!/aide_decission/Screen/TestUnitaire/
+!/aide_decission/Screen/TestUnitaire/**
+!/aide_decission/Screen/launch/
+!/aide_decission/Screen/launch/**
+/aide_decission/screen/*
+!/aide_decission/screen/test_unitaire/
+!/aide_decission/screen/test_unitaire/**
+!/aide_decission/screen/launch/
+!/aide_decission/screen/launch/**
